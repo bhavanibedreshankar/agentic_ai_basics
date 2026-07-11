@@ -1,0 +1,14 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Runtime-generated data (created when the scripts are run, not source)
+memory.json
+tasks.json
+
+# Local Claude Code settings (personal, not shared)
+.claude/settings.local.json
