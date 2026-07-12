@@ -13,6 +13,7 @@ episodes.json
 semantic_memory.json
 external_memory.json
 audit_log.jsonl
+evolved_rules.json
 Tools_and_Actions/file_io_tools/sandbox/
 Safety_and_Control/sandboxing/sandbox/
 Task_and_State_Management/checkpointing/checkpoints/
