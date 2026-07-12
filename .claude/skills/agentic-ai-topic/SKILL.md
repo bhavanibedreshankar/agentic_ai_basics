@@ -96,7 +96,7 @@ CONCEPT: <Name> — <one-line definition, close to the user's own wording>.
 
 <2-4 paragraphs: what this mechanic actually is, why it matters, and how
 it contrasts with 1-2 specific other templates elsewhere in the repo by
-relative path, e.g. ../../tool_use/basic_agentic_tools.py>
+relative path, e.g. ../../Core_Architecture/tool_use/basic_agentic_tools.py>
 
 Use case: <one line>. Type 'exit' to quit/end the conversation.
 """
@@ -109,7 +109,7 @@ import sys
 
 import anthropic
 
-# --- API settings (see ../../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 4096          # tune per template's output length needs
 EFFORT = "medium"
@@ -218,7 +218,7 @@ where relevant>
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - <any subtopic-specific constants>
 
 ### See also

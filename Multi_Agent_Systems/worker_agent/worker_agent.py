@@ -8,7 +8,7 @@ API call — enough when a subtask can be done in one shot. This template
 zooms into what a worker looks like when it CAN'T: a `WorkerAgent` is a
 complete agent in its own right, with its own system prompt, its own
 tools, and its own internal tool-calling loop (structurally identical to
-`../../Tools_and_Actions/tool_use/basic_agentic_tools.py`'s run_turn) —
+`../../Core_Architecture/tool_use/basic_agentic_tools.py`'s run_turn) —
 it just happens to be wrapped as one `.run(task)` call another system can
 invoke without knowing or caring how many turns it took internally.
 
@@ -32,7 +32,7 @@ import sys
 
 import anthropic
 
-# --- API settings (see ../../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 2048
 EFFORT = "medium"

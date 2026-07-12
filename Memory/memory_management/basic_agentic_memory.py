@@ -34,7 +34,7 @@ from pathlib import Path
 
 import anthropic
 
-# --- API settings (see ../../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 4096
 EFFORT = "medium"
@@ -126,7 +126,7 @@ def print_context_size(messages: list[dict]) -> None:
 
 # ---------------------------------------------------------------------------
 # The one tool this agent has: an explicit way for Claude to write to
-# long-term memory. (See ../../Tools_and_Actions/tool_use/basic_agentic_tools.py for a deeper walkthrough of
+# long-term memory. (See ../../Core_Architecture/tool_use/basic_agentic_tools.py for a deeper walkthrough of
 # how tool definitions and the tool-calling loop work in general.)
 # ---------------------------------------------------------------------------
 TOOLS = [
@@ -166,7 +166,7 @@ def execute_tool(name: str, tool_input: dict, memories: list[str]) -> tuple[str,
 def run_turn(messages: list[dict], memories: list[str]) -> None:
     """Handle one user turn end-to-end, including any save_memory tool
     calls. Mutates `messages` in place, same pattern as
-    ../../Tools_and_Actions/tool_use/basic_agentic_tools.py's run_turn.
+    ../../Core_Architecture/tool_use/basic_agentic_tools.py's run_turn.
     """
     while True:
         response = client.messages.create(

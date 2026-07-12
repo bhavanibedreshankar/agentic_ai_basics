@@ -40,7 +40,7 @@ Question: A store has 15 apples. They sell 40% of them in the morning and 6 more
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - Each `answer_*` function's `system` prompt controls that variant's behavior directly
 
 ### See also

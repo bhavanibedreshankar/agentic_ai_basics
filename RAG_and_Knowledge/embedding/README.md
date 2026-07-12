@@ -34,7 +34,7 @@ You: how do I commit changes with git
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `EMBEDDING_DIM` — vector length (default: `64`); higher reduces hash collisions at the cost of more computation
 - `KNOWLEDGE_BASE` — the documents indexed at startup
 

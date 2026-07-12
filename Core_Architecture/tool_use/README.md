@@ -22,7 +22,7 @@ From the repo root:
 ```bash
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=your-key-here
-python3 Tools_and_Actions/tool_use/basic_agentic_tools.py
+python3 Core_Architecture/tool_use/basic_agentic_tools.py
 ```
 
 Try prompts like:
@@ -48,3 +48,5 @@ Edit the constants at the top of `basic_agentic_tools.py`:
 
 - `../../Execution_Loops/agentic_loop/basic_agentic_loop.py` — the outer chat loop this template's `main()` follows
 - `../../Agent_Frameworks_and_Patterns/tool_registry/basic_tool_registry.py` — a scalable alternative to this file's hand-maintained `TOOLS` list + if/elif dispatch
+- `../agent/README.md` — this same tool-calling loop shape, repurposed for unattended goal pursuit instead of turn-by-turn chat
+- `../../Tools_and_Actions/README.md` — server-side and Anthropic-defined client-side tools, building on this custom client-side pattern

@@ -4,7 +4,7 @@ The skill/tool registry pattern — a single catalog of available tools, with de
 
 ## basic_tool_registry.py
 
-A utility agent (calculator, word counter, text case converter, text reverser, clock) built around a `TOOL_REGISTRY` catalog, instead of the hand-maintained list + if/elif chain used in `../../Tools_and_Actions/tool_use/basic_agentic_tools.py`. Type `exit` to end the conversation.
+A utility agent (calculator, word counter, text case converter, text reverser, clock) built around a `TOOL_REGISTRY` catalog, instead of the hand-maintained list + if/elif chain used in `../../Core_Architecture/tool_use/basic_agentic_tools.py`. Type `exit` to end the conversation.
 
 ### Concepts covered
 
@@ -44,4 +44,4 @@ Edit the constants at the top of `basic_tool_registry.py`:
 
 ### See also
 
-- `../../Tools_and_Actions/tool_use/basic_agentic_tools.py` — the simpler hand-maintained approach this pattern replaces
+- `../../Core_Architecture/tool_use/basic_agentic_tools.py` — the simpler hand-maintained approach this pattern replaces

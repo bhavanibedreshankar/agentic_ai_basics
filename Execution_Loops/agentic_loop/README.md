@@ -23,7 +23,7 @@ This template's loop is the cycle at its most stripped-down — worth naming exp
 | **Act** | `print(f"\nClaude: {reply}\n")` — the only "action" here is responding in text; there's no tool call, so nothing actually changes in the world |
 | **Observe** (again) | back to `input("You: ")` for the next cycle |
 
-The honest limitation: because this loop never calls a tool, "Act" never touches anything external, and there's nothing for a subsequent "Observe" to notice *besides* the user's next message — the cycle only closes through the human, not through the environment. For the version where Act means calling a tool and Observe means reading back that tool's real result — the fuller form of the cycle — see `../../Tools_and_Actions/tool_use/basic_agentic_tools.py`.
+The honest limitation: because this loop never calls a tool, "Act" never touches anything external, and there's nothing for a subsequent "Observe" to notice *besides* the user's next message — the cycle only closes through the human, not through the environment. For the version where Act means calling a tool and Observe means reading back that tool's real result — the fuller form of the cycle — see `../../Core_Architecture/tool_use/basic_agentic_tools.py`.
 
 ### Run
 
@@ -56,4 +56,4 @@ Edit the constants at the top of `basic_agentic_loop.py`:
 
 ### See also
 
-- `../../basics/basic.py` — the single-call building block this loop is built on
+- `../../Core_Architecture/basics/basic.py` — the single-call building block this loop is built on

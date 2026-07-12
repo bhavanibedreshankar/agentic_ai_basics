@@ -41,7 +41,7 @@ You: Look up the shipping policy for international orders.
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `MAX_ITERATIONS` — the cap (default: `5`, deliberately low so it's reachable in a demo session — a real agent would set this much higher, sized to the task)
 - `KNOWN_QUERIES` — the one query `flaky_search` will actually resolve, for testing the "completes before the cap" path
 

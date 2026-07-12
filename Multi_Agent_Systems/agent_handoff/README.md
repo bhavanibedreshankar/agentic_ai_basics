@@ -36,7 +36,7 @@ Try:
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `AGENTS` — each agent's system prompt and tools; add a new specialist by adding an entry here and a matching `transfer_to_X` tool in `TRANSFER_TOOLS`
 
 ### See also

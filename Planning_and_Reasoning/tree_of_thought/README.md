@@ -40,7 +40,7 @@ Problem: A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `BRANCH_STRATEGIES` — the list of distinct approaches; add, remove, or reword entries to change how the branches diverge
 - `EVALUATOR_SYSTEM_PROMPT` — the criteria the evaluator judges each branch against
 

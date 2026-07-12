@@ -41,7 +41,7 @@ You: exit
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `AUDIT_LOG_PATH` — where the log is written (default: `audit_log.jsonl` next to the script)
 
 ### See also

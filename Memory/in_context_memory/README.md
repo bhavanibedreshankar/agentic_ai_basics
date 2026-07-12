@@ -9,7 +9,7 @@ A chat agent with a deliberately tiny artificial context limit (500 tokens, vs. 
 ### Concepts covered
 
 - **Ephemeral** — nothing here is written to disk. This is the memory every chat template in the repo (starting with `../../Execution_Loops/agentic_loop/`) has been relying on; this template makes explicit what "ephemeral" actually means by never persisting anything at all.
-- **Limited by token size** — `count_tokens` (the real endpoint, same as `../../token_tracking/`) measures the conversation before every call against `MAX_CONTEXT_TOKENS`.
+- **Limited by token size** — `count_tokens` (the real endpoint, same as `../../Core_Architecture/token_tracking/`) measures the conversation before every call against `MAX_CONTEXT_TOKENS`.
 - **`evict_oldest_pair`** — the simplest possible eviction policy: drop the oldest user/assistant pair, unconditionally, once the limit is exceeded. Deliberately dumber than `../../Task_and_State_Management/context_management/pruning.py` (which prunes selectively) or `../../Task_and_State_Management/context_management/summarization.py` (which compresses rather than discards) — this template exists to show the raw problem those two solve, not to solve it well itself.
 - **Genuine, unrecoverable forgetting** — ask about something early on, keep chatting past the eviction point, then ask about it again: the agent has no way to recover it. There's no fallback here, unlike every other template in `../`.
 
@@ -36,7 +36,7 @@ Claude: I don't have that information...
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `MAX_CONTEXT_TOKENS` — the artificial limit (default: `500`); raise it to see eviction happen less often, or lower it to see it happen almost immediately
 
 ### See also

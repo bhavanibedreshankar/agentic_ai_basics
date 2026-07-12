@@ -19,7 +19,7 @@ Real context windows are huge (1M tokens on current models) — too big to
 usefully demonstrate hitting the limit in a terminal demo. This template
 imposes an artificial, tiny MAX_CONTEXT_TOKENS instead, so you can
 actually watch eviction happen after a handful of messages, using the
-same real count_tokens endpoint from ../../token_tracking/ to measure
+same real count_tokens endpoint from ../../Core_Architecture/token_tracking/ to measure
 usage before every call. When the limit is exceeded, the OLDEST
 user/assistant pair is evicted before sending — the simplest possible
 eviction policy, deliberately dumber than
@@ -40,7 +40,7 @@ import sys
 
 import anthropic
 
-# --- API settings (see ../../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 1024
 EFFORT = "medium"
@@ -55,7 +55,7 @@ client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from the environment
 
 
 def count_tokens(messages: list[dict]) -> int:
-    """The real count_tokens endpoint (see ../../token_tracking/) — not a
+    """The real count_tokens endpoint (see ../../Core_Architecture/token_tracking/) — not a
     guess from len(messages) or character counts.
     """
     result = client.messages.count_tokens(model=MODEL, system=SYSTEM_PROMPT, messages=messages)

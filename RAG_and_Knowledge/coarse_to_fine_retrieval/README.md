@@ -36,7 +36,7 @@ You: how often are passwords rotated
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `DOCUMENTS` — the handbooks indexed at startup (each with multiple `\n\n`-separated sections)
 - `answer_query`'s `top_n_docs` — how many documents survive stage 1
 - `answer_query`'s `top_k_chunks` — how many sections survive stage 2

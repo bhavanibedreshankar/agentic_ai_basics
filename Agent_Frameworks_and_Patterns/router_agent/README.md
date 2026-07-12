@@ -34,7 +34,7 @@ Message: I was charged twice this month
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `CATEGORIES` / `CLASSIFY_SCHEMA` — the closed set of routes
 - `HANDLER_SYSTEM_PROMPTS` — each category's dedicated persona
 

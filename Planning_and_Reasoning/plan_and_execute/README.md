@@ -40,11 +40,11 @@ Plan:
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `PLAN_SYSTEM_PROMPT` / `PLAN_SCHEMA` — controls how the plan is generated and its shape
 - `execute_step`'s system prompt — controls how narrowly each step focuses on its own job
 
 ### See also
 
 - `../../Agent_Frameworks_and_Patterns/prompt_chaining/README.md` — the fixed-sequence alternative this template's dynamic plan generalizes
-- `../../Tools_and_Actions/tool_use/README.md` — how to extend `execute_step` with its own tools per step
+- `../../Core_Architecture/tool_use/README.md` — how to extend `execute_step` with its own tools per step

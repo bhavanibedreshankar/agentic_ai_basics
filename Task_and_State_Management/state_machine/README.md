@@ -36,7 +36,7 @@ Claude: Order A123 hasn't been paid for yet — I'll need to mark it paid first.
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `TRANSITIONS` — the state machine definition itself; add a state or edge here and both tools automatically respect it
 
 ### See also

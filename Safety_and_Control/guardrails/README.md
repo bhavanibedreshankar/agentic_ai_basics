@@ -34,7 +34,7 @@ Claude: I can't process a refund that large — the maximum I can issue is $100.
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `INJECTION_PATTERNS` — the input guardrail's regex list
 - `MAX_REFUND_AMOUNT` — the action guardrail's policy threshold
 

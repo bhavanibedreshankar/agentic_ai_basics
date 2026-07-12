@@ -11,7 +11,7 @@ A blog post generator that breaks the task into a chain of three focused LLM cal
 - **Decomposing a task into steps** — `generate_outline`, `write_draft`, and `edit_draft` are each a separate, stateless call with its own narrow system prompt, instead of one call trying to do everything at once.
 - **Chaining outputs into inputs** — `write_draft` builds its prompt directly from `generate_outline`'s output; `edit_draft` consumes `write_draft`'s output. That data flow *is* the chain.
 - **A programmatic gate** — `validate_outline` is plain Python (no LLM call) that checks the outline has enough sections before continuing, so the chain fails fast instead of wasting a draft call on a broken outline.
-- **Fixed control flow, model-generated content** — `run_chain` calls the three steps in a hardcoded sequence decided by your code, unlike `../../Tools_and_Actions/tool_use/basic_agentic_tools.py`'s agentic loop, where the *model* decides what happens next and how many steps it takes. This makes it a "workflow", not an autonomous agent.
+- **Fixed control flow, model-generated content** — `run_chain` calls the three steps in a hardcoded sequence decided by your code, unlike `../../Core_Architecture/tool_use/basic_agentic_tools.py`'s agentic loop, where the *model* decides what happens next and how many steps it takes. This makes it a "workflow", not an autonomous agent.
 - **Narrow, single-purpose context per step** — unlike the chat templates, no shared conversation history accumulates across steps; each call only sees the specific input it needs for its one job.
 
 ### Run
@@ -57,5 +57,5 @@ Edit the constants at the top of `basic_prompt_chaining.py`:
 
 ### See also
 
-- `../../Tools_and_Actions/tool_use/basic_agentic_tools.py` — the contrasting pattern where the model, not your code, decides the sequence of steps
+- `../../Core_Architecture/tool_use/basic_agentic_tools.py` — the contrasting pattern where the model, not your code, decides the sequence of steps
 - `../../Task_and_State_Management/context_management/summarization.py` — another template that chains a focused, single-purpose LLM call onto a main flow

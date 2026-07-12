@@ -39,7 +39,7 @@ Notice dense search alone barely distinguishes the two error codes (0.969 vs. 1.
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `DOCUMENTS` — the knowledge base indexed at startup
 - `K1` / `B` — BM25 tuning parameters (term-frequency saturation and length normalization)
 - `hybrid_search`'s `alpha` — the dense/sparse blend weight (`1.0` = pure dense, `0.0` = pure sparse, `0.5` = equal)

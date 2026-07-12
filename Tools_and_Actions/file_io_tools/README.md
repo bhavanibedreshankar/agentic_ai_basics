@@ -34,7 +34,7 @@ You: Create a file called notes.txt with a short haiku about autumn, then show m
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `SANDBOX_ROOT` — the directory every file operation is confined to (default: `sandbox/` next to the script)
 
 ### See also

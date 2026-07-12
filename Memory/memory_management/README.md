@@ -52,6 +52,6 @@ Edit the constants at the top of `basic_agentic_memory.py`:
 ### See also
 
 - `../../Task_and_State_Management/context_management/` — deeper dives into pruning, summarization, and retrieval as distinct context management strategies
-- `../../token_tracking/basic_token_tracking.py` — a closer look at measuring and reasoning about token usage
+- `../../Core_Architecture/token_tracking/basic_token_tracking.py` — a closer look at measuring and reasoning about token usage
 - `../semantic_memory/` — this template's flat, append-only fact list restructured into categorized, updatable key-value memory
 - `../` — the other five memory types in this directory, including a proper comparison table

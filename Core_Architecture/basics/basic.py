@@ -3,7 +3,7 @@ CONCEPT: The basics of calling the Claude API — auth, model settings, and a
 single request/response call. This is the smallest possible building block:
 no conversation memory, no tools, just "send a message, get an answer."
 
-Everything in the later templates (../Execution_Loops/agentic_loop/basic_agentic_loop.py, ../Tools_and_Actions/tool_use/basic_agentic_tools.py)
+Everything in the later templates (../../Execution_Loops/agentic_loop/basic_agentic_loop.py, ../tool_use/basic_agentic_tools.py)
 builds on this same call shape.
 """
 

@@ -36,7 +36,7 @@ Claude: I don't have a tool to delete tickets — I can only search and view the
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `ROLE_TOOLS` — the scoping table itself; add a role or extend an existing one's tool list here
 - `SYSTEM_PROMPTS` — the per-role persona instructions
 

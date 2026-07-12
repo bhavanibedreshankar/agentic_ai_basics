@@ -19,7 +19,7 @@ From the repo root:
 ```bash
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=your-key-here
-python3 basics/basic.py
+python3 Core_Architecture/basics/basic.py
 ```
 
 You'll be prompted:
@@ -39,3 +39,11 @@ Edit the constants at the top of `basic.py`:
 - `MAX_TOKENS` — max response length
 - `EFFORT` — thinking/response depth (default: `medium`)
 - `SYSTEM_PROMPT` — instructions that shape how Claude generates code
+
+### See also
+
+- `../token_tracking/README.md` — reading `response.usage` off this same kind of call to measure cost
+- `../system_prompt/README.md` — varying `SYSTEM_PROMPT` to see exactly what it controls
+- `../llm_backbone/README.md` — varying `MODEL` the same way
+- `../tool_use/README.md` — the next building block: giving Claude the ability to act, not just answer
+- `../agent/README.md` — combining tools with autonomy into a goal-pursuing loop, not just one call

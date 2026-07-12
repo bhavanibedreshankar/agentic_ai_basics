@@ -20,11 +20,11 @@ step's sub-agent its OWN tools (a research step might get a search tool,
 a coding step might get a code-execution tool); this template keeps
 execute_step tool-free to isolate the plan/execute mechanic on its own,
 but the extension is straightforward — give execute_step a `tools=`
-parameter and a loop, the same way ../../Tools_and_Actions/tool_use/basic_agentic_tools.py
+parameter and a loop, the same way ../../Core_Architecture/tool_use/basic_agentic_tools.py
 does.
 
 The plan is produced as structured output (`output_config.format`,
-covered in ../../Tools_and_Actions/tool_use/README.md) rather than parsed out of free-text
+covered in ../../Core_Architecture/tool_use/README.md) rather than parsed out of free-text
 numbering — a clean, reliable list of steps instead of regex-ing a
 numbered list.
 
@@ -39,7 +39,7 @@ import sys
 
 import anthropic
 
-# --- API settings (see ../../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 2048
 EFFORT = "medium"

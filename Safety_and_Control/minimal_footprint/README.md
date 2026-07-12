@@ -41,7 +41,7 @@ Task: Email a digest to sam@example.com
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `TOOL_REGISTRY` — each tool's declared capabilities; add a tool by tagging it with the capabilities it actually needs
 - `CAPABILITY_TRIGGERS` — the keyword sets the local classifier matches against
 

@@ -42,7 +42,7 @@ Ticket text: Hi, this is Jane Smith, jane.smith@example.com. I was billed $149.9
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `MAX_RETRIES` — see `../../basics/README.md` for the first three; `MAX_RETRIES` caps retry attempts (default: `3`)
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `MAX_RETRIES` — see `../../Core_Architecture/basics/README.md` for the first three; `MAX_RETRIES` caps retry attempts (default: `3`)
 - `WORKER_SYSTEM_PROMPT` — what the worker is asked to extract and in what format
 - `validate_output` — the validation criteria; extend with more checks (field types, value ranges) as needed
 

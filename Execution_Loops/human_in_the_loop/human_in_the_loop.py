@@ -4,7 +4,7 @@ corrects an agent's action at key checkpoints, BEFORE that action
 actually executes, rather than the agent acting fully autonomously.
 
 Every tool-using template elsewhere in this repo executes a tool the
-moment Claude requests it — `../../Tools_and_Actions/tool_use/basic_agentic_tools.py`'s
+moment Claude requests it — `../../Core_Architecture/tool_use/basic_agentic_tools.py`'s
 `run_turn` goes straight from "Claude called a tool" to "run the tool
 and send back the result," with no pause in between. HITL inserts one
 new step into that exact same loop: between "Claude requested this
@@ -35,7 +35,7 @@ import sys
 
 import anthropic
 
-# --- API settings (see ../../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 2048
 EFFORT = "medium"

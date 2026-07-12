@@ -22,7 +22,7 @@ round, not a multi-level search tree.
 Rather than relying on randomness for the branches to actually be
 different from each other (harder now that sampling parameters like
 `temperature` are no longer configurable on current models — see
-../../basics/README.md), each branch is generated with an explicit,
+../../Core_Architecture/basics/README.md), each branch is generated with an explicit,
 different STRATEGY instruction, guaranteeing the diversity ToT depends on
 instead of hoping for it.
 
@@ -40,7 +40,7 @@ import sys
 
 import anthropic
 
-# --- API settings (see ../../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 1024
 EFFORT = "medium"

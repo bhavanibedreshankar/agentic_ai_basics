@@ -37,7 +37,7 @@ You: Actually, it's green now.
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `MEMORY_FILE` — where facts are persisted (default: `semantic_memory.json` next to the script)
 
 ### See also

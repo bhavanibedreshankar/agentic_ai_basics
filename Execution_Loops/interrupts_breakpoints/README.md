@@ -36,7 +36,7 @@ You: Delete the file old_report.txt
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `COST_BUDGET_TOKENS`, `ACTION_BREAKPOINTS`, `PROGRESS_STALL_THRESHOLD` — the three breakpoint conditions; tune or add new ones in `check_breakpoints`
 
 ### See also

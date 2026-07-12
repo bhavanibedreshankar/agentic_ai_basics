@@ -36,7 +36,7 @@ You: Can you summarize another PDF document?
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `EPISODES_FILE` — where episodes are persisted (default: `episodes.json` next to the script)
 - `recall_episodes`'s `top_k` — how many past episodes are surfaced per query
 

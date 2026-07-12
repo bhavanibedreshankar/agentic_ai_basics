@@ -55,7 +55,7 @@ Report topic:
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `CHECKPOINT_DIR` — where checkpoint files are written (default: `checkpoints/` next to the script)
 - `STEPS` / `STEP_PROMPTS` — the fixed pipeline being checkpointed; swap in your own multi-step task
 

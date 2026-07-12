@@ -45,7 +45,7 @@ Goal: Launch a weekly podcast about local history.
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `DECOMPOSE_SYSTEM_PROMPT` — the instruction controlling how deep and how broad the breakdown goes
 
 ### See also

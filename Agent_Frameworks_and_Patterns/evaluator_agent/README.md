@@ -42,7 +42,7 @@ Then you can supply your own `(task, output, rubric)` triple to score.
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `PASS_THRESHOLD` — the score cutoff for `passed` (default: `7` out of 10)
 - `EVALUATOR_SYSTEM_PROMPT` — the instruction shaping how the evaluator judges anything it's given
 

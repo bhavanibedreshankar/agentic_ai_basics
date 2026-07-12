@@ -6,7 +6,7 @@ Unlike `../code_interpreter/` and `../web_search/`, this is a CLIENT-SIDE
 Anthropic-defined tool: Claude requests an action (view a file, create
 one, replace a string, insert a line), but YOUR code performs it. It's
 "Anthropic-defined" rather than a fully custom tool like everything in
-`../tool_use/` or `../../Agent_Frameworks_and_Patterns/tool_registry/` because the schema and command
+`../../Core_Architecture/tool_use/` or `../../Agent_Frameworks_and_Patterns/tool_registry/` because the schema and command
 set are built into the model — declare it by type and name only,
 `{"type": "text_editor_20250728", "name": "str_replace_based_edit_tool"}`,
 with NO input_schema (the model already knows the shape).
@@ -22,7 +22,7 @@ its canonical absolute form and checked against SANDBOX_ROOT before any
 file operation runs, and anything that would escape the sandbox is
 rejected as a tool error instead of executed. This is the pattern every
 real coding agent needs, not an optional extra — see the SECURITY note
-in `../tool_use/README.md`'s underlying tool-use concepts for the
+in `../../Core_Architecture/tool_use/README.md`'s underlying tool-use concepts for the
 general version of this rule.
 
 All operations are confined to a `sandbox/` directory next to this
@@ -37,7 +37,7 @@ from pathlib import Path
 
 import anthropic
 
-# --- API settings (see ../../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 4096
 EFFORT = "medium"

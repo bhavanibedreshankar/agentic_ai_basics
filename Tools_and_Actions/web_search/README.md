@@ -40,7 +40,7 @@ Claude: The latest stable version of Python is 3.13...
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `TOOLS`'s `max_uses` — how many searches Claude can run per turn (default: `3`); `allowed_domains`/`blocked_domains` can further scope results
 
 ### See also

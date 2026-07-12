@@ -33,7 +33,7 @@ You: Run rm -rf /
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `ALLOWED_COMMANDS` — the command allowlist (default: `echo`, `ls`, `cat`, `wc`, `date`, `pwd`)
 - `COMMAND_TIMEOUT_SECONDS` — the wall-clock limit per command (default: `5`)
 - `SANDBOX_DIR` — the confined working directory (default: `sandbox/` next to the script)

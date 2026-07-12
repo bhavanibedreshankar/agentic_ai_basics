@@ -32,7 +32,7 @@ You: how many days can I work remotely per week
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `DOCUMENTS` — the knowledge base indexed at startup
 - `chunk_text`'s `max_chunk_size` — how finely documents are split before embedding
 - `retrieve`'s `top_k` — how many chunks are injected as context per query

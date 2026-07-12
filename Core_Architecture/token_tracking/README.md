@@ -4,13 +4,13 @@ How to measure and monitor token usage — and therefore cost — in a Claude AP
 
 ## basic_token_tracking.py
 
-A chat agent (same shape as `../Execution_Loops/agentic_loop/basic_agentic_loop.py`) that prints token usage and estimated cost after every turn, plus a running session summary when you type `exit`.
+A chat agent (same shape as `../../Execution_Loops/agentic_loop/basic_agentic_loop.py`) that prints token usage and estimated cost after every turn, plus a running session summary when you type `exit`.
 
 ### Concepts covered
 
 - **Reading usage from a response** — `response.usage.input_tokens` / `.output_tokens`, and the cache-related fields that report cost savings when prompt caching is in play.
 - **Pre-flight token counting** — `preview_input_tokens` uses the `count_tokens` endpoint to see a request's size *before* sending it, at no generation cost — useful for warning on an oversized request or deciding whether to trim history first.
-- **Cumulative tracking** — the `SessionUsage` class accumulates totals across every turn, since a multi-turn chat resends its full history on every call, so cost compounds as the conversation grows. This template doesn't trim history, so you can watch that growth happen — pair it with `../Memory/memory_management/basic_agentic_memory.py`'s `trim_history` if you want to bound it.
+- **Cumulative tracking** — the `SessionUsage` class accumulates totals across every turn, since a multi-turn chat resends its full history on every call, so cost compounds as the conversation grows. This template doesn't trim history, so you can watch that growth happen — pair it with `../../Memory/memory_management/basic_agentic_memory.py`'s `trim_history` if you want to bound it.
 - **Cache fields** — `cache_creation_input_tokens` / `cache_read_input_tokens` are tracked too, with a comment on why they matter (cache reads are billed at a fraction of normal input cost) even though this template doesn't use prompt caching itself.
 - **Cost estimation** — `estimate_cost` converts token counts into an approximate dollar figure using per-token pricing.
 
@@ -58,4 +58,5 @@ Edit the constants at the top of `basic_token_tracking.py`:
 
 ### See also
 
-- `../Memory/memory_management/basic_agentic_memory.py` — bounding context growth (and therefore cost) with a sliding window
+- `../../Memory/memory_management/basic_agentic_memory.py` — bounding context growth (and therefore cost) with a sliding window
+- `../llm_backbone/README.md` — comparing this same `usage` data across different models to see how the backbone affects cost

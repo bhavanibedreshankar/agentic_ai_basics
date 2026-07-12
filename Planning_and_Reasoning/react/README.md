@@ -9,7 +9,7 @@ A research agent with two tools (`lookup_fact`, `calculate`) answering questions
 ### Concepts covered
 
 - **Explicit, labeled reasoning** — the `SYSTEM_PROMPT` instructs Claude to narrate a `Thought:` before every tool call, making the reasoning behind each action visible and auditable, not just the action itself.
-- **Contrast with `../../Tools_and_Actions/tool_use/basic_agentic_tools.py`** — structurally the same loop (call tools, feed results back), but ReAct specifically makes the reasoning between actions part of the visible transcript. That's what turns plain tool use into ReAct.
+- **Contrast with `../../Core_Architecture/tool_use/basic_agentic_tools.py`** — structurally the same loop (call tools, feed results back), but ReAct specifically makes the reasoning between actions part of the visible transcript. That's what turns plain tool use into ReAct.
 - **Contrast with native extended thinking** (`../chain_of_thought/`) — a related but distinct mechanism. ReAct's reasoning is prompted, visible response text; native thinking is a separate `thinking` block the API produces on its own.
 - **Fuzzy fact lookup** — `lookup_fact` matches by word overlap rather than requiring an exact key, so differently-worded lookups (e.g. "france population" vs. "population of france") still resolve.
 
@@ -36,11 +36,11 @@ Observation: France has a population of approximately 68 million.
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `SYSTEM_PROMPT` — the instruction that establishes the Thought/Action/Observation pattern; this *is* the ReAct technique
 - `FACTS` — the mock knowledge base `lookup_fact` searches
 
 ### See also
 
-- `../../Tools_and_Actions/tool_use/README.md` — the underlying tool-calling loop this template adds explicit reasoning to
+- `../../Core_Architecture/tool_use/README.md` — the underlying tool-calling loop this template adds explicit reasoning to
 - `../chain_of_thought/README.md` — reasoning before a single answer, without tool calls or actions

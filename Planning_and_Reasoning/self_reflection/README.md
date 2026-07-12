@@ -43,7 +43,7 @@ APPROVED
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `MAX_ROUNDS` — see `../../basics/README.md` for the first three; `MAX_ROUNDS` caps revision rounds (default: `3`)
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `MAX_ROUNDS` — see `../../Core_Architecture/basics/README.md` for the first three; `MAX_ROUNDS` caps revision rounds (default: `3`)
 - `DRAFT_SYSTEM_PROMPT` / `CRITIC_SYSTEM_PROMPT` / `REVISE_SYSTEM_PROMPT` — the three focused instructions driving each phase
 
 ### See also

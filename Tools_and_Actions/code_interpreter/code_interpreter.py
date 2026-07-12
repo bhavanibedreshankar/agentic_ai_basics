@@ -3,7 +3,7 @@ CONCEPT: Code Interpreter — a sandboxed Python/shell execution environment
 the agent can use to run code, unlike EVERY other tool built so far in
 this repo.
 
-Every custom tool up to this point (`../tool_use/`, `../../Agent_Frameworks_and_Patterns/tool_registry/`,
+Every custom tool up to this point (`../../Core_Architecture/tool_use/`, `../../Agent_Frameworks_and_Patterns/tool_registry/`,
 `../../Memory/external_memory/`, etc.) is CLIENT-SIDE: Claude sends a
 tool_use request, YOUR code runs the actual function, and you send the
 result back as a tool_result. Code execution is different — it's a
@@ -33,7 +33,7 @@ import sys
 
 import anthropic
 
-# --- API settings (see ../../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 4096
 EFFORT = "medium"

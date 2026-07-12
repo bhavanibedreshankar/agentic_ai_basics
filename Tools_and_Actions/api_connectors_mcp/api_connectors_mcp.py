@@ -8,7 +8,7 @@ This template runs the FIRST approach end to end: a custom tool that
 calls a real, live, public REST API (Open-Meteo — free, no API key) using
 nothing but Python's standard library (`urllib.request`), following the
 exact same tool-definition/execute_tool shape as every custom tool in
-this repo (`../tool_use/`, `../../Agent_Frameworks_and_Patterns/tool_registry/`). The only thing new
+this repo (`../../Core_Architecture/tool_use/`, `../../Agent_Frameworks_and_Patterns/tool_registry/`). The only thing new
 here is that the tool's implementation makes a real network call instead
 of computing something locally or reading a local file.
 
@@ -37,7 +37,7 @@ import urllib.request
 
 import anthropic
 
-# --- API settings (see ../../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 4096
 EFFORT = "medium"

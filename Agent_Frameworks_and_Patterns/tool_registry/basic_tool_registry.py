@@ -2,7 +2,7 @@
 CONCEPT: Skill / Tool Registry — a catalog of available tools, with
 descriptions, that the LLM uses to decide which one (if any) to call.
 
-../../Tools_and_Actions/tool_use/basic_agentic_tools.py hand-maintains tool metadata in TWO separate places:
+../../Core_Architecture/tool_use/basic_agentic_tools.py hand-maintains tool metadata in TWO separate places:
 a `TOOLS` list (what Claude sees) and an `execute_tool()` if/elif chain
 (what actually runs). That works fine for 3 tools, but it doesn't scale —
 add a 20th tool and it's easy to update one place and forget the other,
@@ -36,7 +36,7 @@ from zoneinfo import ZoneInfo
 
 import anthropic
 
-# --- API settings (see ../../../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../../Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 4096
 EFFORT = "medium"
@@ -59,7 +59,7 @@ def register_tool(name: str, description: str, input_schema: dict):
     reads to decide HOW to call it), and the actual handler function that
     runs when it's called are all declared together, right here, in one
     place — not split across a separate list and a separate dispatch
-    function like in ../../Tools_and_Actions/tool_use/basic_agentic_tools.py.
+    function like in ../../Core_Architecture/tool_use/basic_agentic_tools.py.
     """
 
     def decorator(func):
@@ -220,7 +220,7 @@ def get_current_time(timezone: str = "UTC") -> str:
 
 
 # ---------------------------------------------------------------------------
-# The agentic loop — identical shape to ../../Tools_and_Actions/tool_use/basic_agentic_tools.py, but tool
+# The agentic loop — identical shape to ../../Core_Architecture/tool_use/basic_agentic_tools.py, but tool
 # definitions and dispatch both come from the registry instead of being
 # hardcoded here.
 # ---------------------------------------------------------------------------

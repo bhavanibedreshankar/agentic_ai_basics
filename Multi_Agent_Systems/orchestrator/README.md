@@ -39,7 +39,7 @@ Orchestrator: Here's your polished paragraph: ...
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `ORCHESTRATOR_SYSTEM_PROMPT` — the instruction establishing "delegate, don't do it yourself"
 - Each `delegate_to_X` function's own `system` prompt — the specialist's persona
 

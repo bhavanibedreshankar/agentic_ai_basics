@@ -15,7 +15,7 @@ import sys
 
 import anthropic
 
-# --- API settings (see ../../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 4096
 EFFORT = "medium"
@@ -27,7 +27,7 @@ client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from the environment
 def ask_claude(messages: list[dict]) -> str:
     """Send the full conversation history to Claude and return its reply.
 
-    Unlike ../../basics/basic.py's ask_claude (which took a single string), this takes the
+    Unlike ../../Core_Architecture/basics/basic.py's ask_claude (which took a single string), this takes the
     entire `messages` list built up so far. Claude only "remembers" what's in
     this list — nothing more, nothing less.
     """

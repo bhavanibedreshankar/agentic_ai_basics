@@ -41,7 +41,7 @@ Proposal: We're proposing to launch a subscription box for artisanal coffee.
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT` — see `../../Core_Architecture/basics/README.md`
 - `ANALYSTS` — the swarm members and their system prompts; add another perspective by adding an entry here
 
 ### See also

@@ -35,7 +35,7 @@ You: What do you know about my UI preferences?
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
 - `EMBEDDING_DIM` — vector length (default: `64`); see `../../RAG_and_Knowledge/embedding/README.md` for the trade-offs
 - `STORE_FILE` — where facts are persisted (default: `external_memory.json` next to the script)
 - `search_memory`'s `top_k` — how many facts are retrieved per query
