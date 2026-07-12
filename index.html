@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agentic AI Basics — A Field Reference for Building with the Claude API</title>
+<meta name="description" content="51 runnable Python templates covering every piece of an AI agent — core architecture, memory, tools, planning, multi-agent systems, safety, and more." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%230c2338%22/><path d=%22M50 18 L82 82 L18 82 Z%22 fill=%22none%22 stroke=%22%23e0985c%22 stroke-width=%226%22/></svg>" />
+<style>
+  /* ============================================================
+     TOKENS
+     Dual-theme concept: dark = cyanotype negative (ink ground,
+     paper-colored linework), light = blueprint positive print
+     (paper ground, ink linework). Same idea, printed both ways.
+     ============================================================ */
+  :root {
+    --ink-900: #0c2338;
+    --ink-800: #123351;
+    --ink-700: #1c4468;
+    --ink-600: #2c5a83;
+    --paper-050: #efece0;
+    --paper-100: #e7e4d6;
+    --paper-200: #d9d5c2;
+    --signal: #cf8143;
+    --signal-strong: #e0985c;
+    --signal-ink: #7a4620;
+
+    --ground: var(--ink-900);
+    --ground-raised: var(--ink-800);
+    --line: var(--ink-600);
+    --line-faint: rgba(231, 228, 214, 0.14);
+    --ink: var(--paper-050);
+    --ink-dim: rgba(239, 236, 224, 0.62);
+    --ink-dimmer: rgba(239, 236, 224, 0.38);
+    --accent: var(--signal-strong);
+    --accent-ink: #291505;
+    --card-bg: rgba(231, 228, 214, 0.04);
+    --card-bg-hover: rgba(231, 228, 214, 0.08);
+    --card-border: rgba(231, 228, 214, 0.16);
+
+    --mono: ui-monospace, "JetBrains Mono", "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  :root[data-theme="light"] {
+    --ground: var(--paper-100);
+    --ground-raised: var(--paper-050);
+    --line: var(--paper-200);
+    --line-faint: rgba(12, 35, 56, 0.10);
+    --ink: var(--ink-900);
+    --ink-dim: rgba(12, 35, 56, 0.66);
+    --ink-dimmer: rgba(12, 35, 56, 0.42);
+    --accent: var(--signal-ink);
+    --accent-ink: #fbf3e9;
+    --card-bg: rgba(12, 35, 56, 0.03);
+    --card-bg-hover: rgba(12, 35, 56, 0.06);
+    --card-border: rgba(12, 35, 56, 0.14);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: var(--paper-100);
+      --ground-raised: var(--paper-050);
+      --line: var(--paper-200);
+      --line-faint: rgba(12, 35, 56, 0.10);
+      --ink: var(--ink-900);
+      --ink-dim: rgba(12, 35, 56, 0.66);
+      --ink-dimmer: rgba(12, 35, 56, 0.42);
+      --accent: var(--signal-ink);
+      --accent-ink: #fbf3e9;
+      --card-bg: rgba(12, 35, 56, 0.03);
+      --card-bg-hover: rgba(12, 35, 56, 0.06);
+      --card-border: rgba(12, 35, 56, 0.14);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--signal-strong);
+    outline-offset: 3px;
+  }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+
+  /* ---------- background grid ---------- */
+  .grid-field {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(var(--line-faint) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-faint) 1px, transparent 1px);
+    background-size: 42px 42px;
+    pointer-events: none;
+  }
+
+  /* ============================================================
+     TOP BAR
+     ============================================================ */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 28px;
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line-faint);
+  }
+  .topbar-mark {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .topbar-mark .dot {
+    width: 8px; height: 8px;
+    background: var(--signal-strong);
+    display: inline-block;
+    border-radius: 1px;
+    transform: rotate(45deg);
+  }
+  .topbar-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+  .topbar-links a { text-decoration: none; color: var(--ink-dim); }
+  .topbar-links a:hover { color: var(--ink); }
+  .theme-toggle {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--ink-dim);
+    padding: 6px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .theme-toggle:hover { color: var(--ink); border-color: var(--line); }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero { padding: 76px 0 40px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px; height: 1px;
+    background: var(--accent);
+  }
+  h1 {
+    font-family: var(--mono);
+    font-weight: 800;
+    font-size: clamp(2.4rem, 6.4vw, 4.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 22px;
+  }
+  h1 .accent { color: var(--accent); }
+  .dek {
+    font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+    color: var(--ink-dim);
+    max-width: 640px;
+    margin: 0 0 34px;
+    text-wrap: pretty;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 64px; }
+  .btn {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid transparent;
+  }
+  .btn-solid { background: var(--accent); color: var(--accent-ink); }
+  .btn-solid:hover { background: var(--signal-strong); }
+  .btn-line { border-color: var(--card-border); color: var(--ink); }
+  .btn-line:hover { border-color: var(--line); background: var(--card-bg); }
+
+  /* ---------- schematic diagram ---------- */
+  .schematic {
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    background: var(--card-bg);
+    padding: 26px 22px 22px;
+    overflow-x: auto;
+  }
+  .schematic-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--ink-dimmer);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .pipeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    min-width: 720px;
+  }
+  .node {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--ground-raised);
+    min-width: 108px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .node:hover { border-color: var(--signal-strong); transform: translateY(-2px); }
+  .node .n-num { display: block; color: var(--accent); font-size: 10px; margin-bottom: 6px; }
+  .arrow {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 1px;
+    background: var(--line);
+    position: relative;
+    margin: 0 2px;
+  }
+  .arrow::after {
+    content: "";
+    position: absolute;
+    right: 0; top: 50%;
+    width: 6px; height: 6px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transform: translate(-2px, -50%) rotate(-45deg);
+  }
+  .feedback-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line-faint);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-dimmer);
+    flex-wrap: wrap;
+  }
+  .feedback-row b { color: var(--ink-dim); font-weight: 600; }
+
+  /* ============================================================
+     STATS STRIP
+     ============================================================ */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line-faint);
+    border-bottom: 1px solid var(--line-faint);
+    margin: 60px 0;
+  }
+  .stat {
+    padding: 22px 20px;
+    border-left: 1px solid var(--line-faint);
+  }
+  .stat:first-child { border-left: none; }
+  .stat-num {
+    font-family: var(--mono);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    display: block;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dimmer);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ============================================================
+     QUICK NAV
+     ============================================================ */
+  .quicknav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 64px;
+  }
+  .quicknav a {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    padding: 7px 13px;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    color: var(--ink-dim);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .quicknav a:hover { color: var(--ink); border-color: var(--line); background: var(--card-bg); }
+  .quicknav a span { color: var(--accent); }
+
+  /* ============================================================
+     QUICKSTART
+     ============================================================ */
+  .quickstart {
+    margin: 64px 0 76px;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .qs-head {
+    padding: 12px 18px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--card-border);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dimmer);
+    display: flex;
+    justify-content: space-between;
+  }
+  pre.qs-body {
+    margin: 0;
+    padding: 20px 18px;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.9;
+    overflow-x: auto;
+    color: var(--ink-dim);
+  }
+  pre.qs-body .c1 { color: var(--ink-dimmer); }
+  pre.qs-body .c2 { color: var(--accent); }
+  pre.qs-body .c3 { color: var(--ink); }
+
+  /* ============================================================
+     MODULES
+     ============================================================ */
+  .modules { padding-bottom: 60px; }
+  .module {
+    padding: 52px 0;
+    border-top: 1px solid var(--line-faint);
+    scroll-margin-top: 90px;
+  }
+  .module-head {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+    align-items: start;
+  }
+  .module-num {
+    font-family: var(--mono);
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--accent);
+    padding-top: 4px;
+  }
+  .module-title {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    margin: 0 0 10px;
+    text-wrap: balance;
+  }
+  .module-dek {
+    color: var(--ink-dim);
+    max-width: 70ch;
+    margin: 0 0 8px;
+    font-size: 0.98rem;
+  }
+  .module-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-dimmer);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .module-link:hover { color: var(--accent); }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+    gap: 12px;
+    padding-left: 104px;
+  }
+  .card {
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    border-radius: 4px;
+    padding: 16px 17px;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+  }
+  .card:hover {
+    border-color: var(--signal-strong);
+    background: var(--card-bg-hover);
+    transform: translateY(-1px);
+  }
+  .card-file {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--accent);
+    word-break: break-word;
+  }
+  .card-concept {
+    font-size: 13.6px;
+    line-height: 1.5;
+    color: var(--ink-dim);
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer {
+    border-top: 1px solid var(--line-faint);
+    padding: 44px 0 56px;
+  }
+  .footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-dimmer);
+  }
+  .footer-grid a { text-decoration: none; color: var(--ink-dim); }
+  .footer-grid a:hover { color: var(--accent); }
+  .footer-col { display: flex; flex-direction: column; gap: 8px; }
+  .footer-col b { color: var(--ink-dim); letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 0 18px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(3) { border-left: none; }
+    .module-head { grid-template-columns: 1fr; }
+    .module-num { padding-top: 0; }
+    .cards { padding-left: 0; }
+    .topbar-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-field" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="topbar-mark" href="#top">
+    <span class="dot" aria-hidden="true"></span>
+    AGENTIC_AI_BASICS
+  </a>
+  <div class="topbar-links">
+    <a href="#modules">Index</a>
+    <a href="#quickstart">Quickstart</a>
+    <a href="https://github.com/bhavanibedreshankar/agentic_ai_basics" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">THEME</button>
+</header>
+
+<main class="wrap" id="top">
+  <section class="hero">
+    <p class="eyebrow">Claude API · Python · 51 reference templates</p>
+    <h1>The anatomy<br />of an <span class="accent">agent.</span></h1>
+    <p class="dek">
+      Fifty-one small, runnable Python templates — one file per concept — organized like a field
+      reference for agentic AI. Start from a single API call, work up through memory, tools, and
+      planning, and end at multi-agent systems. Every template is heavily commented and built to
+      be read, not just run.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="#modules">Browse the index →</a>
+      <a class="btn btn-line" href="https://github.com/bhavanibedreshankar/agentic_ai_basics" target="_blank" rel="noopener">View source on GitHub</a>
+    </div>
+
+    <div class="schematic">
+      <p class="schematic-label">Fig. 1 — the core agentic loop, and where each Core Architecture piece attaches to it</p>
+      <div class="pipeline">
+        <a class="node" href="Core_Architecture/system_prompt/"><span class="n-num">ROLE</span>SYSTEM<br />PROMPT</a>
+        <div class="arrow" aria-hidden="true"></div>
+        <a class="node" href="Core_Architecture/llm_backbone/"><span class="n-num">ENGINE</span>LLM<br />BACKBONE</a>
+        <div class="arrow" aria-hidden="true"></div>
+        <a class="node" href="Core_Architecture/agent/"><span class="n-num">LOOP</span>REASON<br />→ PLAN</a>
+        <div class="arrow" aria-hidden="true"></div>
+        <a class="node" href="Core_Architecture/tool_use/"><span class="n-num">ACT</span>TOOL<br />USE</a>
+        <div class="arrow" aria-hidden="true"></div>
+        <a class="node" href="Execution_Loops/"><span class="n-num">OBSERVE</span>ENVIRON-<br />MENT</a>
+      </div>
+      <div class="feedback-row">
+        <span>↩ feeds back into REASON via</span>
+        <b>Memory/</b>
+        <span>· bounded every cycle by</span>
+        <b>Execution_Loops/</b>
+        <span>· checked at every step by</span>
+        <b>Safety_and_Control/</b>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span class="stat-num">51</span><span class="stat-label">Templates</span></div>
+      <div class="stat"><span class="stat-num">10</span><span class="stat-label">Concept modules</span></div>
+      <div class="stat"><span class="stat-num">1</span><span class="stat-label">API — Claude</span></div>
+      <div class="stat"><span class="stat-num">0</span><span class="stat-label">Framework dependencies</span></div>
+    </div>
+  </section>
+
+  <nav class="quicknav" aria-label="Jump to module" id="quicknav"></nav>
+
+  <section class="quickstart" id="quickstart">
+    <div class="qs-head"><span>SETUP</span><span>run from repo root</span></div>
+    <pre class="qs-body"><span class="c1"># 1. install the one dependency</span>
+<span class="c3">pip install -r requirements.txt</span>
+
+<span class="c1"># 2. set your key — get one at platform.claude.com</span>
+<span class="c3">export <span class="c2">ANTHROPIC_API_KEY</span>=your-key-here</span>
+
+<span class="c1"># 3. run any template — start here</span>
+<span class="c3">python3 Core_Architecture/basics/basic.py</span></pre>
+  </section>
+
+  <section class="modules" id="modules"></section>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-col">
+      <b>Agentic AI Basics</b>
+      <span>A learning series of self-contained templates<br />for building with the Claude API.</span>
+    </div>
+    <div class="footer-col">
+      <b>Repository</b>
+      <a href="https://github.com/bhavanibedreshankar/agentic_ai_basics" target="_blank" rel="noopener">github.com/bhavanibedreshankar/agentic_ai_basics ↗</a>
+      <a href="https://platform.claude.com" target="_blank" rel="noopener">platform.claude.com ↗</a>
+    </div>
+    <div class="footer-col">
+      <b>Reading order</b>
+      <span>Core Architecture first — everything<br />else builds on that same call shape.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var MODULES = [
+    {
+      num: "01", key: "core-architecture", title: "Core Architecture",
+      dek: "What an agent is actually made of: a single request/response call, token tracking, the reasoning-engine LLM, tool use, and the system prompt that shapes it all.",
+      dir: "Core_Architecture",
+      items: [
+        ["basics/basic.py", "One request in, one response out — auth, model settings, and the call shape everything else builds on."],
+        ["token_tracking/basic_token_tracking.py", "Reading usage off every response to track tokens and cost as they accumulate."],
+        ["system_prompt/system_prompt.py", "Same question, three system prompts — isolating exactly what the system prompt controls."],
+        ["llm_backbone/llm_backbone.py", "One fixed harness, two different models — proving the LLM is a swappable component."],
+        ["tool_use/basic_agentic_tools.py", "Giving Claude a task manager it can actually act on, not just describe."],
+        ["agent/agent.py", "One goal in, no further human input — an unattended perceive-reason-plan-act loop until it's done."]
+      ]
+    },
+    {
+      num: "02", key: "planning-and-reasoning", title: "Planning & Reasoning",
+      dek: "Getting Claude to reason more reliably: ReAct, chain-of-thought, tree of thought, plan-and-execute, and self-reflection.",
+      dir: "Planning_and_Reasoning",
+      items: [
+        ["react/react_agent.py", "Alternating reasoning and tool calls out loud, instead of hiding the thinking between them."],
+        ["chain_of_thought/chain_of_thought.py", "Prompting step-by-step reasoning before the final answer, instead of jumping to a conclusion."],
+        ["tree_of_thought/tree_of_thought.py", "Exploring several reasoning paths in parallel and picking the strongest one."],
+        ["plan_and_execute/plan_and_execute.py", "Writing the whole plan first, then executing it one step at a time."],
+        ["self_reflection/self_reflection.py", "Critiquing its own draft and revising, in a loop, until it's actually good enough."]
+      ]
+    },
+    {
+      num: "03", key: "memory", title: "Memory",
+      dek: "Six kinds of agent memory: in-context, working, episodic, basic long-term facts, structured semantic, and external/vector store.",
+      dir: "Memory",
+      items: [
+        ["in_context_memory/in_context_memory.py", "The memory every chat template already has by default — just the messages list, made explicit."],
+        ["working_memory/working_memory.py", "A scratchpad for mid-task state, scoped to one task and cleared once it's done."],
+        ["episodic_memory/episodic_memory.py", "Records of past interactions — what happened, when, and how it went."],
+        ["memory_management/basic_agentic_memory.py", "Short-term conversation plus long-term facts, both kept from growing unbounded."],
+        ["semantic_memory/semantic_memory.py", "Timeless facts about the world or the user, independent of any one event."],
+        ["external_memory/external_memory.py", "Long-term facts stored outside the conversation, retrieved by semantic similarity."]
+      ]
+    },
+    {
+      num: "04", key: "multi-agent-systems", title: "Multi-Agent Systems",
+      dek: "Multiple agents working together: an orchestrator delegating to specialists, a reusable worker agent, permanent handoff, a validating supervisor, and a parallel uncoordinated swarm.",
+      dir: "Multi_Agent_Systems",
+      items: [
+        ["orchestrator/orchestrator.py", "One agent breaking a goal into subtasks and delegating each to a specialist."],
+        ["worker_agent/worker_agent.py", "A specialized agent for one subtask, packaged as a reusable, callable unit."],
+        ["agent_handoff/agent_handoff.py", "Passing the conversation to another agent permanently, not just delegating and waiting."],
+        ["supervisor_pattern/supervisor_pattern.py", "Delegating, then checking the result against real criteria before trusting it."],
+        ["swarm/swarm.py", "Several agents working in parallel, independently, with no central coordinator."]
+      ]
+    },
+    {
+      num: "05", key: "execution-loops", title: "Execution Loops",
+      dek: "The core agentic loop and three ways to keep it under control: human approval gates, condition-based breakpoints, and an unconditional iteration cap.",
+      dir: "Execution_Loops",
+      items: [
+        ["agentic_loop/basic_agentic_loop.py", "How a “chat” gets built at all on top of a stateless API."],
+        ["human_in_the_loop/human_in_the_loop.py", "A human approves the action before it executes, not after."],
+        ["interrupts_breakpoints/interrupts_breakpoints.py", "Conditions checked every iteration that pause execution when triggered."],
+        ["max_iterations/max_iterations.py", "An unconditional cap on loop cycles, regardless of whether the task looks done."]
+      ]
+    },
+    {
+      num: "06", key: "tools-and-actions", title: "Tools & Actions",
+      dek: "Tools that affect the world beyond text, building on the tool-calling foundation in Core Architecture: code execution, web search, file editing, external API/MCP connectors, and browser automation.",
+      dir: "Tools_and_Actions",
+      items: [
+        ["code_interpreter/code_interpreter.py", "A real, Anthropic-hosted sandbox Claude runs code in directly — no execute_tool() at all."],
+        ["web_search/web_search.py", "Live, native web search past the model's training cutoff, with no search backend to host."],
+        ["file_io_tools/file_io_tools.py", "Reading, writing, and editing real files — the core capability behind coding agents."],
+        ["api_connectors_mcp/api_connectors_mcp.py", "Wrapping a live external API as a tool, plus the MCP shape for comparison."],
+        ["browser_computer_use/browser_computer_use.py", "Reading a page, deciding an action, observing the result — repeated until the task is done."]
+      ]
+    },
+    {
+      num: "07", key: "task-and-state-management", title: "Task & State Management",
+      dek: "Managing the shape and progress of an agent's own work: task decomposition, a formally enforced state machine, context window management, and crash-resumable checkpointing.",
+      dir: "Task_and_State_Management",
+      items: [
+        ["task_decomposition/task_decomposition.py", "Breaking a high-level goal into scoped subtasks before any of them run."],
+        ["state_machine/state_machine.py", "Formally defined valid states and transitions, so an invalid action can't happen."],
+        ["context_management/pruning.py", "Selectively dropping stale context without losing the conversation's actual thread."],
+        ["context_management/summarization.py", "Compressing old turns into a short paragraph instead of deleting or keeping everything."],
+        ["context_management/retrieval.py", "A larger pool of past context, pulled back in only when it's actually relevant."],
+        ["checkpointing/checkpointing.py", "Saving progress to disk as a long task runs, so a crash doesn't mean starting over."]
+      ]
+    },
+    {
+      num: "08", key: "safety-and-control", title: "Safety & Control",
+      dek: "Keeping an agent's actions bounded and reviewable: guardrails, sandboxed execution, role- and task-scoped permissions, and a durable audit trail.",
+      dir: "Safety_and_Control",
+      items: [
+        ["guardrails/guardrails.py", "Rules or classifiers that block harmful actions automatically, no human required."],
+        ["sandboxing/sandboxing.py", "Isolating execution so even an unrestricted command can't reach past its boundary."],
+        ["permission_scoping/permission_scoping.py", "Limiting tool access by role — the model is never even told the tool exists."],
+        ["audit_trail/audit_trail.py", "A durable, structured record of every action, written for a human to review later."],
+        ["minimal_footprint/minimal_footprint.py", "Requesting only the permissions this specific task needs, not access “just in case.”"]
+      ]
+    },
+    {
+      num: "09", key: "rag-and-knowledge", title: "RAG & Knowledge",
+      dek: "Retrieval-Augmented Generation and its building blocks: embedding, chunking, hybrid dense+sparse search, and coarse-to-fine retrieval.",
+      dir: "RAG_and_Knowledge",
+      items: [
+        ["embedding/embedding_search.py", "Turning text into vectors so similar meaning can be found by math, not string matching."],
+        ["chunking/chunking_strategies.py", "Splitting documents before indexing, so retrieval returns a paragraph, not a whole file."],
+        ["rag/basic_rag.py", "Fetching relevant documents and injecting them into the prompt before Claude answers."],
+        ["hybrid_rag/hybrid_search.py", "Combining dense embeddings with sparse keyword search so each covers the other's blind spot."],
+        ["coarse_to_fine_retrieval/coarse_to_fine_retrieval.py", "A two-stage funnel: search broadly and cheaply, then refine within the shortlist."]
+      ]
+    },
+    {
+      num: "10", key: "agent-frameworks-and-patterns", title: "Agent Frameworks & Patterns",
+      dek: "Compositional patterns for structuring how an agent turns a request into a result: a tool registry, fixed prompt chaining, a classify-then-route agent, and a reusable output evaluator.",
+      dir: "Agent_Frameworks_and_Patterns",
+      items: [
+        ["tool_registry/basic_tool_registry.py", "One catalog per tool instead of a hand-maintained list plus an if/elif chain."],
+        ["prompt_chaining/basic_prompt_chaining.py", "A fixed sequence of focused LLM calls, each one's output feeding the next."],
+        ["router_agent/router_agent.py", "Classifying the input and routing it to a specialist, as one upfront decision."],
+        ["evaluator_agent/evaluator_agent.py", "A reusable scoring call, usable against any task, output, and rubric you pass in."]
+      ]
+    }
+  ];
+
+  var REPO = "https://github.com/bhavanibedreshankar/agentic_ai_basics/tree/main/";
+
+  function esc(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  var navHtml = "";
+  var modulesHtml = "";
+
+  MODULES.forEach(function (m) {
+    navHtml += '<a href="#' + m.key + '"><span>' + m.num + '</span>' + esc(m.title) + '</a>';
+
+    var cardsHtml = m.items.map(function (item) {
+      var path = item[0];
+      var concept = item[1];
+      var href = REPO + m.dir + "/" + path.split("/").slice(0, -1).join("/");
+      return (
+        '<a class="card" href="' + href + '" target="_blank" rel="noopener">' +
+        '<span class="card-file">' + esc(path) + '</span>' +
+        '<span class="card-concept">' + concept + '</span>' +
+        '</a>'
+      );
+    }).join("");
+
+    modulesHtml +=
+      '<article class="module" id="' + m.key + '">' +
+        '<div class="module-head">' +
+          '<div class="module-num">' + m.num + '</div>' +
+          '<div>' +
+            '<h2 class="module-title">' + esc(m.title) + '</h2>' +
+            '<p class="module-dek">' + m.dek + '</p>' +
+            '<a class="module-link" href="' + REPO + m.dir + '" target="_blank" rel="noopener">/' + m.dir + ' ↗</a>' +
+          '</div>' +
+        '</div>' +
+        '<div class="cards">' + cardsHtml + '</div>' +
+      '</article>';
+  });
+
+  document.getElementById("quicknav").innerHTML = navHtml;
+  document.getElementById("modules").innerHTML = modulesHtml;
+
+  /* ---------- theme toggle ---------- */
+  var root = document.documentElement;
+  var toggle = document.getElementById("themeToggle");
+  var stored = null;
+  try { stored = localStorage.getItem("aab-theme"); } catch (e) {}
+  if (stored === "light" || stored === "dark") root.setAttribute("data-theme", stored);
+
+  toggle.addEventListener("click", function () {
+    var current = root.getAttribute("data-theme");
+    var isDark = current ? current === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var next = isDark ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("aab-theme", next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
