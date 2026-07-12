@@ -63,7 +63,7 @@ class SessionUsage:
     the whole session so you can see the running picture, not just the
     latest turn.
 
-    Note: this template doesn't trim history (unlike ../memory_management/basic_agentic_memory.py's
+    Note: this template doesn't trim history (unlike ../Memory/memory_management/basic_agentic_memory.py's
     trim_history), so watch input_tokens climb turn over turn as the
     conversation grows — that growth is the whole point of tracking it.
     """

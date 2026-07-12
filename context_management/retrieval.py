@@ -1,7 +1,7 @@
 """
 CONCEPT: Context retrieval — instead of keeping everything in context
 (short-term memory) or always injecting a fixed set of facts (long-term
-memory, as in ../memory_management/basic_agentic_memory.py), store a LARGER pool of
+memory, as in ../Memory/memory_management/basic_agentic_memory.py), store a LARGER pool of
 information externally and pull in only the pieces relevant to the
 CURRENT question, on demand.
 

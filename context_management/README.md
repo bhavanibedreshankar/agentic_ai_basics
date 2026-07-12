@@ -13,7 +13,7 @@ export ANTHROPIC_API_KEY=your-key-here
 
 A research assistant that repeatedly calls a (mocked) `search_web` tool. Once a tool result is superseded by a newer one, its raw content is replaced with a short placeholder — the surrounding conversation (questions, Claude's answers) is left untouched.
 
-- **`prune_old_tool_results`** — selectively replaces stale `tool_result` blocks with a placeholder, in place. More surgical than `../memory_management/basic_agentic_memory.py`'s `trim_history`, which drops whole old *turns* wholesale.
+- **`prune_old_tool_results`** — selectively replaces stale `tool_result` blocks with a placeholder, in place. More surgical than `../Memory/memory_management/basic_agentic_memory.py`'s `trim_history`, which drops whole old *turns* wholesale.
 - Prints a before/after character count each time pruning runs, so the effect is visible.
 
 ```bash
@@ -37,7 +37,7 @@ python3 summarization.py
 A documentation assistant with a small local knowledge base (5 short notes on unrelated topics). Instead of injecting every note into the system prompt, Claude calls a `search_notes` tool and only the most relevant notes (by keyword overlap) are pulled into context for that turn.
 
 - **`search_notes`** — ranks notes by how many words they share with the query and returns only the top matches. A dependency-free stand-in for the embeddings + vector database a real RAG system would use — same pattern, simpler math.
-- Contrast with `../memory_management/basic_agentic_memory.py`: memory always injects saved facts into every system prompt; retrieval pulls in only what's relevant to the *current* question, on demand.
+- Contrast with `../Memory/memory_management/basic_agentic_memory.py`: memory always injects saved facts into every system prompt; retrieval pulls in only what's relevant to the *current* question, on demand.
 
 ```bash
 python3 retrieval.py
