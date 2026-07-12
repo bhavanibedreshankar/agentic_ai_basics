@@ -58,4 +58,4 @@ Edit the constants at the top of `basic_prompt_chaining.py`:
 ### See also
 
 - `../Tools_and_Actions/tool_use/basic_agentic_tools.py` — the contrasting pattern where the model, not your code, decides the sequence of steps
-- `../context_management/summarization.py` — another template that chains a focused, single-purpose LLM call onto a main flow
+- `../Task_and_State_Management/context_management/summarization.py` — another template that chains a focused, single-purpose LLM call onto a main flow

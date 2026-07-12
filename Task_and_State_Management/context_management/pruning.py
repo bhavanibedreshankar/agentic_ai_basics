@@ -3,7 +3,7 @@ CONCEPT: Context pruning — selectively removing content that's no longer
 useful from the conversation history, to keep the context window focused
 and cut token cost, WITHOUT losing the conversation's actual flow.
 
-This is a more surgical technique than ../Memory/memory_management/basic_agentic_memory.py's
+This is a more surgical technique than ../../Memory/memory_management/basic_agentic_memory.py's
 trim_history, which drops whole old TURNS wholesale (a blunt sliding
 window). Pruning instead targets specific, bulky pieces of content that
 have already served their purpose — most commonly, tool results. Once
@@ -27,7 +27,7 @@ import sys
 
 import anthropic
 
-# --- API settings (see ../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 4096
 EFFORT = "medium"

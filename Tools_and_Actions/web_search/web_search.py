@@ -7,7 +7,7 @@ Like `../code_interpreter/`, this is a SERVER-SIDE tool: declare
 `{"type": "web_search_20260209", "name": "web_search"}` and Claude
 issues search queries, fetches results, and reads them — all on
 Anthropic's infrastructure. Contrast with every custom search tool built
-elsewhere in this repo (`../../context_management/retrieval.py`,
+elsewhere in this repo (`../../Task_and_State_Management/context_management/retrieval.py`,
 `../../RAG_and_Knowledge/embedding/`, `../../Memory/external_memory/`) —
 those all search a small, fixed, LOCAL knowledge base you defined ahead
 of time. This tool searches the actual, live, current internet. There's

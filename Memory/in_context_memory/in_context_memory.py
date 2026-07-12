@@ -1,7 +1,7 @@
 """
 CONCEPT: In-context memory — information held within the active
 conversation's `messages` list. This is the memory every template in
-../../agentic_loop/ and beyond has been using implicitly; this template
+../../Execution_Loops/agentic_loop/ and beyond has been using implicitly; this template
 makes its two defining properties impossible to miss:
 
   1. EPHEMERAL — it lives only in this Python process's `messages`
@@ -11,7 +11,7 @@ makes its two defining properties impossible to miss:
      survive that.
   2. LIMITED BY TOKEN SIZE — every message ever sent in this conversation
      gets resent, in full, on every single API call (see
-     ../../agentic_loop/README.md). That's cheap at first and expensive
+     ../../Execution_Loops/agentic_loop/README.md). That's cheap at first and expensive
      later — and eventually impossible, since context windows have a
      hard maximum.
 
@@ -23,8 +23,8 @@ same real count_tokens endpoint from ../../token_tracking/ to measure
 usage before every call. When the limit is exceeded, the OLDEST
 user/assistant pair is evicted before sending — the simplest possible
 eviction policy, deliberately dumber than
-../../context_management/pruning.py's selective pruning or
-../../context_management/summarization.py's summarize-then-replace. The
+../../Task_and_State_Management/context_management/pruning.py's selective pruning or
+../../Task_and_State_Management/context_management/summarization.py's summarize-then-replace. The
 point here isn't a good eviction strategy — those templates cover that —
 it's showing the raw problem those strategies exist to solve.
 
@@ -68,7 +68,7 @@ def evict_oldest_pair(messages: list[dict]) -> list[dict]:
     again. No summarizing, no selective pruning: once evicted here,
     that information is unrecoverable — genuinely, not just
     inconvenient to access. That's the point: this is the failure mode
-    ../../context_management/'s techniques exist to avoid.
+    ../../Task_and_State_Management/context_management/'s techniques exist to avoid.
     """
     return messages[2:] if len(messages) >= 2 else messages
 

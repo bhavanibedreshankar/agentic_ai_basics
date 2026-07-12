@@ -8,7 +8,7 @@ A research assistant that searches the real, live internet (via the native `web_
 
 ### Concepts covered
 
-- **Real search, not a local knowledge base** — contrast with every other "search" tool in this repo (`../../context_management/retrieval.py`, `../../RAG_and_Knowledge/embedding/`, `../../Memory/external_memory/`): those all search a small, fixed set of documents you defined ahead of time. This tool searches the actual current internet — no knowledge base to write, no embedding function to implement.
+- **Real search, not a local knowledge base** — contrast with every other "search" tool in this repo (`../../Task_and_State_Management/context_management/retrieval.py`, `../../RAG_and_Knowledge/embedding/`, `../../Memory/external_memory/`): those all search a small, fixed set of documents you defined ahead of time. This tool searches the actual current internet — no knowledge base to write, no embedding function to implement.
 - **Server-side, same shape as `../code_interpreter/`** — declare the tool, Claude issues queries and reads results on Anthropic's infrastructure, and the queries/results just show up as extra content blocks. No `execute_tool()` here either.
 - **`max_uses`** — caps how many searches can run in a single turn, a real cost/latency control since each search is billed.
 - **Reading citations** — `print_response_content` pulls citation URLs off the response's text blocks and prints them as a separate "Sources" section, so it's clear where each claim actually came from, not just the prose answer.

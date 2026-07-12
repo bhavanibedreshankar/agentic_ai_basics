@@ -18,7 +18,7 @@ summary is gone for good. It's worth doing when the alternative
 (resending a huge, ever-growing history on every turn) costs more than
 the occasional summarization call.
 
-Use case: a general chat agent (like ../agentic_loop/basic_agentic_loop.py) that, once
+Use case: a general chat agent (like ../../Execution_Loops/agentic_loop/basic_agentic_loop.py) that, once
 the conversation grows past SUMMARIZE_AFTER_TURNS messages, summarizes
 everything except the most recent few turns and continues from there.
 
@@ -32,7 +32,7 @@ import sys
 
 import anthropic
 
-# --- API settings (see ../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 4096
 EFFORT = "medium"
@@ -76,7 +76,7 @@ def format_transcript(messages: list[dict]) -> str:
 def summarize(messages: list[dict]) -> str:
     """CONCEPT: the summarization call itself — a completely separate,
     narrowly-focused API call from the main conversation. Same idea as the
-    chained steps in ../prompt_chaining/basic_prompt_chaining.py: one job, its own system
+    chained steps in ../../prompt_chaining/basic_prompt_chaining.py: one job, its own system
     prompt, no shared history with the ongoing chat.
     """
     transcript = format_transcript(messages)

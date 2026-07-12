@@ -8,7 +8,7 @@ An internal docs Q&A assistant over a small company-policy knowledge base (PTO, 
 
 ### Concepts covered
 
-- **Classic RAG vs. tool-based retrieval** — this template always retrieves before generating, on every query, with no model decision involved. Contrast with `../embedding/embedding_search.py` and `../../context_management/retrieval.py`, where retrieval is a *tool* the model decides whether and when to call. Classic RAG is simpler and deterministic; tool-based retrieval is more flexible but relies on the model deciding correctly.
+- **Classic RAG vs. tool-based retrieval** — this template always retrieves before generating, on every query, with no model decision involved. Contrast with `../embedding/embedding_search.py` and `../../Task_and_State_Management/context_management/retrieval.py`, where retrieval is a *tool* the model decides whether and when to call. Classic RAG is simpler and deterministic; tool-based retrieval is more flexible but relies on the model deciding correctly.
 - **The full pipeline wired together** — `chunk_text` (same idea as `../chunking/chunking_strategies.py`) splits each document, `embed`/`cosine_similarity` (same mechanic as `../embedding/embedding_search.py`) index and rank the chunks, and `answer_query` injects the top matches into a single direct API call — no `tools=` parameter, no agentic loop, because retrieval already happened in Python before Claude is ever called.
 - **Retrieval transparency** — `answer_query` prints which chunks were retrieved and their similarity scores before generating, so you can see exactly what context Claude is grounded in.
 

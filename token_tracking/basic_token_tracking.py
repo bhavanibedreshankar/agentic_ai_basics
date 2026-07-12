@@ -4,7 +4,7 @@ therefore cost) in a Claude API application.
 
 Every API response includes a `usage` object reporting exactly how many
 tokens were consumed. This template wraps the basic chat loop from
-../agentic_loop/basic_agentic_loop.py with per-turn and cumulative token tracking, plus a
+../Execution_Loops/agentic_loop/basic_agentic_loop.py with per-turn and cumulative token tracking, plus a
 pre-flight estimate using the count_tokens endpoint.
 
 Concepts demonstrated:
@@ -16,7 +16,7 @@ Concepts demonstrated:
      large request or decide whether to trim history first.
   3. CUMULATIVE TRACKING — accumulating usage across every turn of a
      conversation. Each API call in a multi-turn chat resends the full
-     history (see ../agentic_loop/basic_agentic_loop.py), so cost compounds as a
+     history (see ../Execution_Loops/agentic_loop/basic_agentic_loop.py), so cost compounds as a
      conversation grows — this template makes that growth visible.
   4. COST ESTIMATION — converting token counts into an approximate dollar
      figure using the model's per-token pricing.

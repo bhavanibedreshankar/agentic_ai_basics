@@ -8,7 +8,7 @@ This template is a personal assistant that remembers facts about you across
 sessions. It demonstrates three distinct memory techniques:
 
   1. SHORT-TERM MEMORY — the `messages` list, same idea as
-     ../../agentic_loop/basic_agentic_loop.py. Lives only for this run of the program; gone the
+     ../../Execution_Loops/agentic_loop/basic_agentic_loop.py. Lives only for this run of the program; gone the
      moment the process exits.
 
   2. LONG-TERM MEMORY — facts persisted to memory.json. Survives between

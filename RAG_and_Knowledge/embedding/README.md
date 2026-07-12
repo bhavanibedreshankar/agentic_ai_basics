@@ -4,7 +4,7 @@ Converting text into a vector representation for semantic similarity search — 
 
 ## embedding_search.py
 
-A documentation assistant, same knowledge base shape as `../../context_management/retrieval.py`, but backed by vector search instead of keyword overlap. Type `exit` to end the conversation.
+A documentation assistant, same knowledge base shape as `../../Task_and_State_Management/context_management/retrieval.py`, but backed by vector search instead of keyword overlap. Type `exit` to end the conversation.
 
 ### Concepts covered
 

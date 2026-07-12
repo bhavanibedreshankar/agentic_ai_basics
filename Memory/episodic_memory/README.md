@@ -43,4 +43,4 @@ You: Can you summarize another PDF document?
 ### See also
 
 - `../semantic_memory/README.md` — the kind of durable fact you might *extract* from repeated episodes (not done automatically here)
-- `../../context_management/retrieval.py` — the same keyword-overlap technique this template's recall uses, applied there to a fixed knowledge base instead of a growing event log
+- `../../Task_and_State_Management/context_management/retrieval.py` — the same keyword-overlap technique this template's recall uses, applied there to a fixed knowledge base instead of a growing event log

@@ -21,7 +21,7 @@ out for a real embeddings API call and everything else in this file
 (cosine_similarity, search) keeps working completely unchanged, because
 they only care that embed() returns a fixed-length list of floats.
 
-Contrast with ../../context_management/retrieval.py: that template scored
+Contrast with ../../Task_and_State_Management/context_management/retrieval.py: that template scored
 relevance by counting shared words directly (bag-of-words overlap). This
 template does something related in spirit but represents each document as
 a persistent VECTOR you compute once and re-use, and ranks by a proper
@@ -29,7 +29,7 @@ similarity metric (cosine similarity) — the actual mechanic real vector
 databases use, just at a much smaller scale.
 
 Use case: a documentation assistant, same knowledge base shape as
-../../context_management/retrieval.py, but backed by vector search instead
+../../Task_and_State_Management/context_management/retrieval.py, but backed by vector search instead
 of a keyword search tool. Type 'exit' to end the conversation.
 """
 

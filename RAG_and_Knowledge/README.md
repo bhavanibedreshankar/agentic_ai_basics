@@ -31,6 +31,6 @@ python3 RAG_and_Knowledge/rag/basic_rag.py
 
 `chunking/chunking_strategies.py` is the one exception — it's pure text processing with no API calls, so it runs without `ANTHROPIC_API_KEY` set.
 
-## How this relates to `../context_management/`
+## How this relates to `../Task_and_State_Management/context_management/`
 
-`context_management/retrieval.py` already covers the *idea* of retrieval (pulling in only relevant content on demand) using simple keyword overlap. This directory goes deeper into the mechanics that power real RAG systems — vector embeddings, chunking strategies, hybrid dense+sparse search, and multi-stage retrieval — the pieces `context_management/retrieval.py` deliberately kept simple.
+`../Task_and_State_Management/context_management/retrieval.py` already covers the *idea* of retrieval (pulling in only relevant content on demand) using simple keyword overlap. This directory goes deeper into the mechanics that power real RAG systems — vector embeddings, chunking strategies, hybrid dense+sparse search, and multi-stage retrieval — the pieces `../Task_and_State_Management/context_management/retrieval.py` deliberately kept simple.

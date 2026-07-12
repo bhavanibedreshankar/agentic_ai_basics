@@ -8,7 +8,7 @@ training.
 This template implements the CLASSIC RAG pattern — the one the term
 originally described: retrieve, then generate, every single time, with no
 model decision in between. Compare this with
-../embedding/embedding_search.py and ../../context_management/retrieval.py,
+../embedding/embedding_search.py and ../../Task_and_State_Management/context_management/retrieval.py,
 where retrieval is a TOOL Claude decides whether and when to call. Both
 are valid architectures:
 

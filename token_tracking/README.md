@@ -4,7 +4,7 @@ How to measure and monitor token usage — and therefore cost — in a Claude AP
 
 ## basic_token_tracking.py
 
-A chat agent (same shape as `../agentic_loop/basic_agentic_loop.py`) that prints token usage and estimated cost after every turn, plus a running session summary when you type `exit`.
+A chat agent (same shape as `../Execution_Loops/agentic_loop/basic_agentic_loop.py`) that prints token usage and estimated cost after every turn, plus a running session summary when you type `exit`.
 
 ### Concepts covered
 
