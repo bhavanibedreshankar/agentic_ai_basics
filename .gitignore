@@ -12,6 +12,7 @@ tasks.json
 episodes.json
 semantic_memory.json
 external_memory.json
+Tools_and_Actions/file_io_tools/sandbox/
 
 # Local Claude Code settings (personal, not shared)
 .claude/settings.local.json
