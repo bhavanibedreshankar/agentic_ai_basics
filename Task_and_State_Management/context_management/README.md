@@ -24,7 +24,7 @@ python3 pruning.py
 
 A general chat agent that, once the conversation passes `SUMMARIZE_AFTER_TURNS` messages, uses a separate, focused API call to summarize everything except the most recent `KEEP_RECENT_TURNS` messages, then continues from the summary.
 
-- **`summarize`** — a narrow, single-purpose LLM call (same idea as `../../prompt_chaining/basic_prompt_chaining.py`'s steps) whose only job is compressing older history into a short paragraph.
+- **`summarize`** — a narrow, single-purpose LLM call (same idea as `../../Agent_Frameworks_and_Patterns/prompt_chaining/basic_prompt_chaining.py`'s steps) whose only job is compressing older history into a short paragraph.
 - **`maybe_summarize`** — splices the summary in as a single leading message, collapsing many old messages into one.
 - A hand-built version of the same idea behind Anthropic's built-in "compaction" feature — useful for understanding the mechanism, even though production systems would typically use the server-side feature instead of reimplementing it.
 

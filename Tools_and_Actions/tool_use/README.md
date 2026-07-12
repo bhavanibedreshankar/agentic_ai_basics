@@ -47,4 +47,4 @@ Edit the constants at the top of `basic_agentic_tools.py`:
 ### See also
 
 - `../../Execution_Loops/agentic_loop/basic_agentic_loop.py` — the outer chat loop this template's `main()` follows
-- `../tool_registry/basic_tool_registry.py` — a scalable alternative to this file's hand-maintained `TOOLS` list + if/elif dispatch
+- `../../Agent_Frameworks_and_Patterns/tool_registry/basic_tool_registry.py` — a scalable alternative to this file's hand-maintained `TOOLS` list + if/elif dispatch

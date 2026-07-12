@@ -76,7 +76,7 @@ def format_transcript(messages: list[dict]) -> str:
 def summarize(messages: list[dict]) -> str:
     """CONCEPT: the summarization call itself — a completely separate,
     narrowly-focused API call from the main conversation. Same idea as the
-    chained steps in ../../prompt_chaining/basic_prompt_chaining.py: one job, its own system
+    chained steps in ../../Agent_Frameworks_and_Patterns/prompt_chaining/basic_prompt_chaining.py: one job, its own system
     prompt, no shared history with the ongoing chat.
     """
     transcript = format_transcript(messages)

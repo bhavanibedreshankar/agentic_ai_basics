@@ -4,7 +4,7 @@ level PLAN: break a complex task into a sequence of concrete steps.
 Second, EXECUTE each step in order, one at a time, using the results of
 completed steps as context for the ones that follow.
 
-Compare this with ../../prompt_chaining/basic_prompt_chaining.py: that
+Compare this with ../../Agent_Frameworks_and_Patterns/prompt_chaining/basic_prompt_chaining.py: that
 template also runs a fixed sequence of steps (outline -> draft -> edit),
 but the sequence itself is HARDCODED by the developer ahead of time —
 always exactly those three steps, for every input. Plan-and-Execute is

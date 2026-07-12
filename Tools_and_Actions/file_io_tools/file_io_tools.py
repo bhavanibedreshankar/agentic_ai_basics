@@ -6,7 +6,7 @@ Unlike `../code_interpreter/` and `../web_search/`, this is a CLIENT-SIDE
 Anthropic-defined tool: Claude requests an action (view a file, create
 one, replace a string, insert a line), but YOUR code performs it. It's
 "Anthropic-defined" rather than a fully custom tool like everything in
-`../tool_use/` or `../tool_registry/` because the schema and command
+`../tool_use/` or `../../Agent_Frameworks_and_Patterns/tool_registry/` because the schema and command
 set are built into the model — declare it by type and name only,
 `{"type": "text_editor_20250728", "name": "str_replace_based_edit_tool"}`,
 with NO input_schema (the model already knows the shape).

@@ -32,5 +32,5 @@ python3 Planning_and_Reasoning/react/react_agent.py
 - **`chain_of_thought/`** reasons once, linearly, before answering.
 - **`react/`** interleaves that reasoning with tool calls, one action at a time, narrating why before each one.
 - **`tree_of_thought/`** runs chain-of-thought-style reasoning multiple times with different strategies, then picks the best result — width instead of a single path.
-- **`plan_and_execute/`** decides the *shape* of the work up front (a model-generated plan), then works through it step by step — contrast with `../prompt_chaining/`, where the sequence of steps is fixed by the developer rather than generated per task.
+- **`plan_and_execute/`** decides the *shape* of the work up front (a model-generated plan), then works through it step by step — contrast with `../Agent_Frameworks_and_Patterns/prompt_chaining/`, where the sequence of steps is fixed by the developer rather than generated per task.
 - **`self_reflection/`** takes a single output and improves it in place through repeated critique — contrast with `tree_of_thought/`, which compares several independent outputs rather than revising one.

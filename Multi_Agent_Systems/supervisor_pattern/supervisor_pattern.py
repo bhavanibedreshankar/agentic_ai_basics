@@ -69,7 +69,7 @@ def validate_output(raw_output: str) -> tuple[bool, str]:
     Python — parse the JSON, check required fields exist, do a trivial
     sanity check on the email. This is cheap, fast, and gives specific,
     actionable feedback the worker can act on, exactly the way
-    ../../prompt_chaining/basic_prompt_chaining.py's validate_outline
+    ../../Agent_Frameworks_and_Patterns/prompt_chaining/basic_prompt_chaining.py's validate_outline
     gates a pipeline stage — applied here to a delegated agent's output
     instead of one step in a fixed chain.
     """

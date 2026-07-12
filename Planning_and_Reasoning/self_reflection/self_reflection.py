@@ -3,7 +3,7 @@ CONCEPT: Self-Reflection / Critique — the agent reviews and critiques its
 OWN output before finalizing it, revising based on that critique, and
 repeating until the output is good enough (or a round limit is reached).
 
-Compare this with ../../prompt_chaining/basic_prompt_chaining.py's
+Compare this with ../../Agent_Frameworks_and_Patterns/prompt_chaining/basic_prompt_chaining.py's
 edit_draft step: that template runs exactly ONE fixed editing pass, no
 matter how good or bad the draft was. Self-reflection is ITERATIVE —
 critique and revise repeat in a loop, and the number of rounds isn't
@@ -13,7 +13,7 @@ independent candidate answers and picks the best one; self-reflection
 takes a SINGLE answer and improves it in place through repeated critique.
 
 The stopping condition here is a MODEL judgment, not deterministic code —
-contrast with ../../prompt_chaining/basic_prompt_chaining.py's
+contrast with ../../Agent_Frameworks_and_Patterns/prompt_chaining/basic_prompt_chaining.py's
 validate_outline, which is a plain Python check with no LLM call
 involved. Asking the model "is this good enough now?" is more flexible
 (it can judge nuanced things like tone or clarity that code can't check)
@@ -73,7 +73,7 @@ def generate_draft(task: str) -> str:
 def critique(task: str, draft: str) -> str:
     """CONCEPT: a focused, separate call whose only job is judging the
     current draft — same "narrow, single-purpose step" idea as
-    ../../prompt_chaining/basic_prompt_chaining.py's steps, but this one's
+    ../../Agent_Frameworks_and_Patterns/prompt_chaining/basic_prompt_chaining.py's steps, but this one's
     output feeds back into ANOTHER call (revise) rather than forward into
     the next stage of a fixed pipeline.
     """

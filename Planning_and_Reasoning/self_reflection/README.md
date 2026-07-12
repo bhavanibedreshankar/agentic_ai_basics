@@ -8,8 +8,8 @@ Writes a short professional email, then critiques and revises it in a loop (up t
 
 ### Concepts covered
 
-- **Iterative, not fixed** — contrast with `../../prompt_chaining/basic_prompt_chaining.py`'s `edit_draft`, which runs exactly one editing pass regardless of draft quality. Here, `self_reflect` loops: critique → revise → critique again, as many times as issues keep turning up (bounded by `MAX_ROUNDS`).
-- **A model-judged stopping condition** — contrast with `../../prompt_chaining/basic_prompt_chaining.py`'s `validate_outline`, a deterministic Python check with no LLM call. Here, whether to stop is itself an LLM judgment (`critique` deciding "APPROVED" or not) — more flexible for nuanced criteria like tone, but less predictable, which is why `MAX_ROUNDS` exists as a hard backstop.
+- **Iterative, not fixed** — contrast with `../../Agent_Frameworks_and_Patterns/prompt_chaining/basic_prompt_chaining.py`'s `edit_draft`, which runs exactly one editing pass regardless of draft quality. Here, `self_reflect` loops: critique → revise → critique again, as many times as issues keep turning up (bounded by `MAX_ROUNDS`).
+- **A model-judged stopping condition** — contrast with `../../Agent_Frameworks_and_Patterns/prompt_chaining/basic_prompt_chaining.py`'s `validate_outline`, a deterministic Python check with no LLM call. Here, whether to stop is itself an LLM judgment (`critique` deciding "APPROVED" or not) — more flexible for nuanced criteria like tone, but less predictable, which is why `MAX_ROUNDS` exists as a hard backstop.
 - **`is_approved`'s strictness** — only an exact `"APPROVED"` counts; a hedge like *"Approved, but the closing feels abrupt"* is correctly treated as **not** approved, since that "but" is still actionable feedback.
 - **Contrast with `../tree_of_thought/`** — ToT generates several independent candidates and picks the best; self-reflection takes a *single* candidate and improves it in place.
 
@@ -48,5 +48,7 @@ APPROVED
 
 ### See also
 
-- `../../prompt_chaining/README.md` — the single-pass alternative this template's loop generalizes
+- `../../Agent_Frameworks_and_Patterns/prompt_chaining/README.md` — the single-pass alternative this template's loop generalizes
 - `../tree_of_thought/README.md` — improving quality by comparing multiple candidates instead of revising one
+- `../../Agent_Frameworks_and_Patterns/evaluator_agent/README.md` — a standalone, reusable version of this template's `critique` step, usable outside a revise loop with any task/output/rubric
+- `../../Agent_Frameworks_and_Patterns/README.md` — this template is conceptually the "Reflection Loop" pattern in that directory's five-pattern set; it stays here since it's already integrated into `Planning_and_Reasoning/`'s own comparison table

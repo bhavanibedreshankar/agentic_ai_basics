@@ -54,7 +54,7 @@ ORCHESTRATOR_SYSTEM_PROMPT = (
 # ---------------------------------------------------------------------------
 # The specialists. Each is a single focused API call under its own system
 # prompt — the same "narrow, single-purpose call" idea as
-# ../../prompt_chaining/basic_prompt_chaining.py's steps, but invoked
+# ../../Agent_Frameworks_and_Patterns/prompt_chaining/basic_prompt_chaining.py's steps, but invoked
 # dynamically by the orchestrator's own decisions rather than in a fixed
 # order the developer wrote in advance.
 # ---------------------------------------------------------------------------

@@ -48,4 +48,4 @@ Task: Email a digest to sam@example.com
 ### See also
 
 - `../permission_scoping/README.md` — the coarser, role-based version of this same least-privilege idea
-- `../../Tools_and_Actions/tool_registry/README.md` — the general tool-registry pattern this template's `TOOL_REGISTRY` builds on, extended with capability tags
+- `../../Agent_Frameworks_and_Patterns/tool_registry/README.md` — the general tool-registry pattern this template's `TOOL_REGISTRY` builds on, extended with capability tags

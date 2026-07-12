@@ -8,7 +8,7 @@ Takes a broad task, plans it into 3–5 concrete steps, then executes each step 
 
 ### Concepts covered
 
-- **A dynamically generated plan, not a hardcoded sequence** — contrast with `../../prompt_chaining/basic_prompt_chaining.py`, which always runs the same three fixed steps (outline → draft → edit). Here, `generate_plan` produces a *different* plan depending on the task — a simple request might get 3 steps, a complex one more.
+- **A dynamically generated plan, not a hardcoded sequence** — contrast with `../../Agent_Frameworks_and_Patterns/prompt_chaining/basic_prompt_chaining.py`, which always runs the same three fixed steps (outline → draft → edit). Here, `generate_plan` produces a *different* plan depending on the task — a simple request might get 3 steps, a complex one more.
 - **Structured output for the plan** — `generate_plan` uses `output_config.format` with a JSON Schema to get a clean, reliably-parseable list of steps instead of regex-ing a free-text numbered list.
 - **`execute_step` as a scoped sub-agent** — each step's call receives the overall task, the full plan for context, and every prior step's result, but its job is narrowly focused on producing *this* step's output only. Real Plan-and-Execute systems often give each step's sub-agent its own tools; this template keeps execution tool-free to isolate the plan/execute mechanic on its own.
 - **Sequential accumulation** — `plan_and_execute` runs steps in order, passing growing `results` into each subsequent step, so later steps can build on earlier ones.
@@ -46,5 +46,5 @@ Plan:
 
 ### See also
 
-- `../../prompt_chaining/README.md` — the fixed-sequence alternative this template's dynamic plan generalizes
+- `../../Agent_Frameworks_and_Patterns/prompt_chaining/README.md` — the fixed-sequence alternative this template's dynamic plan generalizes
 - `../../Tools_and_Actions/tool_use/README.md` — how to extend `execute_step` with its own tools per step

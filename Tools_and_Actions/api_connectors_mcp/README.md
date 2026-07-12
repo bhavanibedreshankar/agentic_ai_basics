@@ -41,4 +41,4 @@ Claude: It's currently 25.7°C in Tokyo with a light wind of 1.5 km/h.
 ### See also
 
 - `../code_interpreter/README.md`, `../web_search/README.md` — the two fully server-side (Anthropic-hosted) tools this template's MCP reference section contrasts with
-- `../tool_registry/README.md` — a catalog pattern worth combining with this once you have more than one external API connector
+- `../../Agent_Frameworks_and_Patterns/tool_registry/README.md` — a catalog pattern worth combining with this once you have more than one external API connector
