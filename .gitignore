@@ -9,6 +9,14 @@ __pycache__/
 # Runtime-generated data (created when the scripts are run, not source)
 memory.json
 tasks.json
+episodes.json
+semantic_memory.json
+external_memory.json
 
 # Local Claude Code settings (personal, not shared)
 .claude/settings.local.json
+
+# Editor swap/backup files
+*.swp
+*.swo
+*~
