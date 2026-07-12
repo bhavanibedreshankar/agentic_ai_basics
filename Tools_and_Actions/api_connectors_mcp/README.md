@@ -8,7 +8,7 @@ A weather assistant that calls a real, live, public REST API (Open-Meteo — fre
 
 ### Concepts covered
 
-- **A real external API call, standard library only** — `get_weather` uses `urllib.request` (no `requests`, no new dependency) to hit a live weather API and parse the JSON response. Same tool-definition/`execute_tool` shape as every custom tool elsewhere in this repo (`../../tool_use/`) — the only thing new is that the implementation makes a real network call instead of computing something locally.
+- **A real external API call, standard library only** — `get_weather` uses `urllib.request` (no `requests`, no new dependency) to hit a live weather API and parse the JSON response. Same tool-definition/`execute_tool` shape as every custom tool elsewhere in this repo (`../tool_use/`) — the only thing new is that the implementation makes a real network call instead of computing something locally.
 - **Why MCP is shown, not run** — an MCP server needs a real URL (and often authentication) to connect to; hardcoding one to demonstrate against would mean depending on infrastructure this template doesn't control and can't guarantee stays available. The commented block at the bottom shows the exact request shape (`mcp_servers` + a `mcp_toolset` tool entry) for when you have a real server to point it at.
 - **MCP is server-side too** — like `../code_interpreter/` and `../web_search/`, an MCP-connected tool has no `execute_tool()` on your side: the MCP server (run by you or by whoever operates the service) executes the call over the network, and Claude talks to it directly.
 
@@ -41,4 +41,4 @@ Claude: It's currently 25.7°C in Tokyo with a light wind of 1.5 km/h.
 ### See also
 
 - `../code_interpreter/README.md`, `../web_search/README.md` — the two fully server-side (Anthropic-hosted) tools this template's MCP reference section contrasts with
-- `../../tool_registry/README.md` — a catalog pattern worth combining with this once you have more than one external API connector
+- `../tool_registry/README.md` — a catalog pattern worth combining with this once you have more than one external API connector

@@ -47,4 +47,4 @@ Plan:
 ### See also
 
 - `../../prompt_chaining/README.md` — the fixed-sequence alternative this template's dynamic plan generalizes
-- `../../tool_use/README.md` — how to extend `execute_step` with its own tools per step
+- `../../Tools_and_Actions/tool_use/README.md` — how to extend `execute_step` with its own tools per step

@@ -21,7 +21,7 @@ From the repo root:
 ```bash
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=your-key-here
-python3 tool_registry/basic_tool_registry.py
+python3 Tools_and_Actions/tool_registry/basic_tool_registry.py
 ```
 
 Try prompts like:

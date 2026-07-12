@@ -5,7 +5,7 @@ ACTION (a tool call), observing the result, and reasoning again — a
 Thought -> Action -> Observation cycle, repeated until it has enough
 information to give a Final Answer.
 
-This is structurally similar to ../../tool_use/basic_agentic_tools.py's
+This is structurally similar to ../../Tools_and_Actions/tool_use/basic_agentic_tools.py's
 agentic loop — both call tools and feed results back. The difference is
 what ReAct adds: it makes the reasoning BETWEEN actions explicit and
 visible in the transcript, not just an implicit step the model does
@@ -161,7 +161,7 @@ def execute_tool(name: str, tool_input: dict) -> tuple[str, bool]:
 
 def run_turn(messages: list[dict]) -> None:
     """The ReAct loop. Structurally the same shape as
-    ../../tool_use/basic_agentic_tools.py's run_turn — call the API,
+    ../../Tools_and_Actions/tool_use/basic_agentic_tools.py's run_turn — call the API,
     check for tool calls, execute them, feed results back, repeat. What
     makes THIS a ReAct loop rather than plain tool use is entirely in the
     SYSTEM_PROMPT above: it's what makes Claude narrate a labeled Thought

@@ -22,7 +22,7 @@ From the repo root:
 ```bash
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=your-key-here
-python3 tool_use/basic_agentic_tools.py
+python3 Tools_and_Actions/tool_use/basic_agentic_tools.py
 ```
 
 Try prompts like:
@@ -46,5 +46,5 @@ Edit the constants at the top of `basic_agentic_tools.py`:
 
 ### See also
 
-- `../agentic_loop/basic_agentic_loop.py` — the outer chat loop this template's `main()` follows
+- `../../agentic_loop/basic_agentic_loop.py` — the outer chat loop this template's `main()` follows
 - `../tool_registry/basic_tool_registry.py` — a scalable alternative to this file's hand-maintained `TOOLS` list + if/elif dispatch

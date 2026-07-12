@@ -9,7 +9,7 @@ A research agent with two tools (`lookup_fact`, `calculate`) answering questions
 ### Concepts covered
 
 - **Explicit, labeled reasoning** — the `SYSTEM_PROMPT` instructs Claude to narrate a `Thought:` before every tool call, making the reasoning behind each action visible and auditable, not just the action itself.
-- **Contrast with `../../tool_use/basic_agentic_tools.py`** — structurally the same loop (call tools, feed results back), but ReAct specifically makes the reasoning between actions part of the visible transcript. That's what turns plain tool use into ReAct.
+- **Contrast with `../../Tools_and_Actions/tool_use/basic_agentic_tools.py`** — structurally the same loop (call tools, feed results back), but ReAct specifically makes the reasoning between actions part of the visible transcript. That's what turns plain tool use into ReAct.
 - **Contrast with native extended thinking** (`../chain_of_thought/`) — a related but distinct mechanism. ReAct's reasoning is prompted, visible response text; native thinking is a separate `thinking` block the API produces on its own.
 - **Fuzzy fact lookup** — `lookup_fact` matches by word overlap rather than requiring an exact key, so differently-worded lookups (e.g. "france population" vs. "population of france") still resolve.
 
@@ -42,5 +42,5 @@ Observation: France has a population of approximately 68 million.
 
 ### See also
 
-- `../../tool_use/README.md` — the underlying tool-calling loop this template adds explicit reasoning to
+- `../../Tools_and_Actions/tool_use/README.md` — the underlying tool-calling loop this template adds explicit reasoning to
 - `../chain_of_thought/README.md` — reasoning before a single answer, without tool calls or actions

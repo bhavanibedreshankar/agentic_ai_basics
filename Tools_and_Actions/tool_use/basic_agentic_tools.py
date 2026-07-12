@@ -3,7 +3,7 @@ CONCEPT: Tool use (a.k.a. "function calling") — giving Claude the ability to
 take actions, not just talk.
 
 A tool-using agent has TWO loops working together:
-  1. The OUTER loop (in main()) — same pattern as ../agentic_loop/basic_agentic_loop.py: keep
+  1. The OUTER loop (in main()) — same pattern as ../../agentic_loop/basic_agentic_loop.py: keep
      prompting the user and growing the conversation history until "exit".
   2. The INNER loop (in run_turn()) — new here: within a single user turn,
      Claude may ask to call one or more tools before it can give a final
@@ -25,7 +25,7 @@ from pathlib import Path
 
 import anthropic
 
-# --- API settings (see ../basics/basic.py for what each of these means) ---
+# --- API settings (see ../../basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 4096
 EFFORT = "medium"
@@ -257,7 +257,7 @@ def main() -> None:
 
     messages: list[dict] = []
 
-    # ---- OUTER LOOP: same shape as ../agentic_loop/basic_agentic_loop.py ----
+    # ---- OUTER LOOP: same shape as ../../agentic_loop/basic_agentic_loop.py ----
     # Keeps the conversation going across turns; each iteration hands off to
     # run_turn(), which may itself loop several times internally to resolve
     # tool calls before returning.

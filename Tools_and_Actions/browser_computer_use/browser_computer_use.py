@@ -23,7 +23,7 @@ agents (an accessibility tree or a page's DOM serves the same role a
 screenshot does for pixel-based agents), and it's the one that's actually
 runnable here: every tool below is a plain Python function operating on
 an in-memory mock browser, client-side, same shape as
-`../../tool_use/basic_agentic_tools.py`.
+`../tool_use/basic_agentic_tools.py`.
 
 Demonstrated on a mock checkout flow: browse a product, add it to cart,
 and check out with shipping details — a multi-step task requiring

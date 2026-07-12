@@ -44,5 +44,5 @@ Elements:
 
 ### See also
 
-- `../../tool_use/README.md` — the client-side tool-calling loop this template's `read_page`/`click`/`type_text` tools follow
+- `../tool_use/README.md` — the client-side tool-calling loop this template's `read_page`/`click`/`type_text` tools follow
 - `../file_io_tools/README.md` — another client-executed tool set, for contrast with this one's dynamic mock-state backend

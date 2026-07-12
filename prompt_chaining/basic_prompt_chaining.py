@@ -14,7 +14,7 @@ Why chain instead of one big prompt?
     looks wrong, before spending tokens on the next (possibly expensive)
     step.
 
-This is different from ../tool_use/basic_agentic_tools.py's agentic loop, where the
+This is different from ../Tools_and_Actions/tool_use/basic_agentic_tools.py's agentic loop, where the
 MODEL decides what happens next (which tool to call, when to stop) and the
 number of steps isn't known in advance. In prompt chaining, YOUR CODE
 decides the sequence of steps ahead of time — the control flow is fixed;
@@ -136,7 +136,7 @@ def edit_draft(draft: str) -> str:
 # ---------------------------------------------------------------------------
 # The chain itself: a fixed sequence of steps, decided by code, not the
 # model. This is the defining trait of prompt chaining — compare this
-# straight-line function to run_turn() in ../tool_use/basic_agentic_tools.py, where
+# straight-line function to run_turn() in ../Tools_and_Actions/tool_use/basic_agentic_tools.py, where
 # the number and order of steps is NOT known ahead of time because the
 # model decides it dynamically.
 # ---------------------------------------------------------------------------
