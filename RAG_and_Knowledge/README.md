@@ -1,6 +1,6 @@
 # RAG_and_Knowledge
 
-Retrieval-Augmented Generation and the building blocks it's made of. Five templates, each in its own directory, going from the smallest mechanic (embedding) up through a full pipeline (RAG) to two ways of scaling or improving it (hybrid search, coarse-to-fine retrieval).
+Retrieval-Augmented Generation and the building blocks it's made of. Six templates, each in its own directory, going from the smallest mechanic (embedding) up through a full pipeline (RAG) to ways of scaling or improving it (hybrid search, coarse-to-fine retrieval) and a structurally different kind of retrieval entirely (graph RAG).
 
 None of these use a real embeddings API or vector database — every template implements a small, dependency-free stand-in (a hashing-based "embedding" and, in some cases, BM25) purely in Python, so nothing here needs anything beyond `ANTHROPIC_API_KEY`. Each template is explicit in its comments about what it's simplifying and why — see `embedding/README.md` for the fullest explanation of that trade-off.
 
@@ -13,6 +13,7 @@ None of these use a real embeddings API or vector database — every template im
 | 3 | [`rag/`](rag/README.md) | The full pipeline: chunk → embed → retrieve → generate, wired together as classic (non-tool-based) RAG |
 | 4 | [`hybrid_rag/`](hybrid_rag/README.md) | Combining dense (embedding) search with sparse (BM25) keyword search to cover each other's blind spots |
 | 5 | [`coarse_to_fine_retrieval/`](coarse_to_fine_retrieval/README.md) | A two-stage search funnel — broad document-level retrieval first, then precise section-level retrieval only within the shortlist |
+| 6 | [`graph_rag/`](graph_rag/README.md) | Retrieving from a graph of a codebase's real structure (nodes + calls/contains/inherits/imports edges) instead of ranking flat chunks — plus an agentic version that gives Claude tools onto the graph instead of a fixed pipeline |
 
 ## Setup
 
