@@ -1,6 +1,6 @@
 # Agent_Frameworks_and_Patterns
 
-Six compositional patterns for structuring how an agent (or several) turns a request into a result — from a single agent's tool catalog, through fixed and dynamic multi-call pipelines, to a standalone reusable scorer.
+Seven compositional patterns for structuring how an agent (or several) turns a request into a result — from a single agent's tool catalog, through fixed and dynamic multi-call pipelines and runtime prompt assembly, to a standalone reusable scorer.
 
 ## Suggested reading order
 
@@ -9,9 +9,10 @@ Six compositional patterns for structuring how an agent (or several) turns a req
 | 1 | [`tool_registry/`](tool_registry/README.md) | A catalog of available tools, with descriptions, that both advertises tools to the LLM and dispatches calls to them — moved here from `03_Tools_and_Actions/` |
 | 2 | [`dynamic_tool_selection/`](dynamic_tool_selection/README.md) | The same registry idea at a scale where sending every tool up front no longer fits — Claude searches a large tool catalog and loads only what a request needs |
 | 3 | [`prompt_chaining/`](prompt_chaining/README.md) | Multiple LLM calls in a fixed sequence, output of one feeding the next — moved here from the repo root |
-| 4 | [`router_agent/`](router_agent/README.md) | Classifying input and dispatching to the right specialist as a single upfront decision |
-| 5 | [`evaluator_agent/`](evaluator_agent/README.md) | A standalone, reusable LLM call that scores any output against any caller-supplied rubric |
-| 6 | [`../04_Planning_and_Reasoning/self_reflection/`](../04_Planning_and_Reasoning/self_reflection/README.md) | **Reflection Loop** — generate, critique, revise, repeat until quality passes. Stays under `04_Planning_and_Reasoning/`, where it's already integrated into that topic's own comparison table; linked here rather than duplicated |
+| 4 | [`dynamic_prompt_construction/`](dynamic_prompt_construction/README.md) | Assembling a single prompt's CONTENT at runtime from independent, conditionally-included sections — tier, urgency, relevant facts, conversation state — rather than sending one fixed string |
+| 5 | [`router_agent/`](router_agent/README.md) | Classifying input and dispatching to the right specialist as a single upfront decision |
+| 6 | [`evaluator_agent/`](evaluator_agent/README.md) | A standalone, reusable LLM call that scores any output against any caller-supplied rubric |
+| 7 | [`../04_Planning_and_Reasoning/self_reflection/`](../04_Planning_and_Reasoning/self_reflection/README.md) | **Reflection Loop** — generate, critique, revise, repeat until quality passes. Stays under `04_Planning_and_Reasoning/`, where it's already integrated into that topic's own comparison table; linked here rather than duplicated |
 
 ## Setup
 
@@ -35,8 +36,9 @@ python3 08_Agent_Frameworks_and_Patterns/router_agent/router_agent.py
 | `tool_registry/` | One call, N possible tool round-trips | The model, per request | The *catalog* is reusable; each call is task-specific |
 | `dynamic_tool_selection/` | One call, N tool round-trips + a search round-trip per new tool | The model searches, then decides | The *catalog* is reusable and scales far larger than `tool_registry/`'s |
 | `prompt_chaining/` | A fixed N calls | The developer, hardcoded in advance | The *shape* is reusable; each step is written for one pipeline |
+| `dynamic_prompt_construction/` | One call | Which optional sections' conditions are true this turn | The section functions are reusable; the assembled prompt is one-shot, rebuilt every call |
 | `router_agent/` | Exactly 2 (classify, then respond) | The classifier's own output | The classifier is reusable across any request in the same domain |
 | `evaluator_agent/` | 1 per evaluation | N/A — no sequence, a single utility call | **Yes, by design** — task/output/rubric are all arguments, not hardcoded |
 | `self_reflection/` (external) | Variable, up to `MAX_ROUNDS` | Whether the critic approves | The loop shape is reusable; the critic's criteria are task-specific |
 
-`tool_registry/` and `prompt_chaining/` are the two foundational shapes everything else in this directory is a variation of: tool_registry lets the *model* decide what happens next within one call; prompt_chaining fixes the sequence in code ahead of time. `dynamic_tool_selection/` is `tool_registry/`'s scaling answer — same registry idea, but the model searches a large catalog on demand instead of seeing all of it up front. `router_agent/` sits between the two foundational shapes — one decision point, made by a dedicated classification call rather than either a tool choice or a hardcoded sequence. `evaluator_agent/` and `self_reflection/` both involve judging output, but `evaluator_agent/` is a general-purpose scorer you call from anywhere, while `self_reflection/` is a complete generate-critique-revise loop built around one task.
+`tool_registry/` and `prompt_chaining/` are the two foundational shapes everything else in this directory is a variation of: tool_registry lets the *model* decide what happens next within one call; prompt_chaining fixes the sequence in code ahead of time. `dynamic_tool_selection/` is `tool_registry/`'s scaling answer — same registry idea, but the model searches a large catalog on demand instead of seeing all of it up front. `dynamic_prompt_construction/` takes prompt_chaining's "developer decides the shape in advance" a step further into runtime: instead of a fixed sequence of CALLS, it's a fixed set of possible prompt SECTIONS, each independently included or not based on this turn's state. `router_agent/` sits between the two foundational shapes — one decision point, made by a dedicated classification call rather than either a tool choice or a hardcoded sequence. `evaluator_agent/` and `self_reflection/` both involve judging output, but `evaluator_agent/` is a general-purpose scorer you call from anywhere, while `self_reflection/` is a complete generate-critique-revise loop built around one task.
