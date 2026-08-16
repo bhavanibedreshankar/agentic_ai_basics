@@ -19,9 +19,9 @@ baseline.json
 trace_log.jsonl
 evolved_prompt.json
 code_graph.json
-Tools_and_Actions/file_io_tools/sandbox/
-Safety_and_Control/sandboxing/sandbox/
-Task_and_State_Management/checkpointing/checkpoints/
+03_Tools_and_Actions/file_io_tools/sandbox/
+10_Safety_and_Control/sandboxing/sandbox/
+06_Task_and_State_Management/checkpointing/checkpoints/
 
 # Local Claude Code settings (personal, not shared)
 .claude/settings.local.json

@@ -22,8 +22,8 @@ reviewing).
 ## 0. Read before starting
 
 Skim 2-3 recently-added topic directories (check `git log --oneline` for the
-most recent `Add <Topic>: ...` commits, e.g. `Multi_Agent_Systems/`,
-`Tools_and_Actions/`, `Memory/`) to recalibrate on current file/README
+most recent `Add <Topic>: ...` commits, e.g. `07_Multi_Agent_Systems/`,
+`03_Tools_and_Actions/`, `05_Memory/`) to recalibrate on current file/README
 conventions before writing new ones — the concrete examples below capture
 the pattern but the two or three most recent real directories are the
 ground truth.
@@ -37,6 +37,15 @@ The user's message has the shape: a topic name, followed by N subtopics
   — capitalize each word, join with `_`, turn `&`/`/`/`-` into `and`/`_`.
   Examples from this repo: `Memory`, `RAG_and_Knowledge`,
   `Planning_and_Reasoning`, `Tools_and_Actions`, `Multi_Agent_Systems`.
+  Every top-level topic directory is also prefixed with a two-digit,
+  zero-padded learning-order number (`01_Core_Architecture`,
+  `05_Memory`, `19_LangMem`) reflecting the suggested reading order in the
+  root README's Templates table. A new topic gets the next unused number
+  in sequence (check the highest existing prefix first) UNLESS the user
+  specifies where in the learning order it belongs, in which case renumber
+  the directories from that point onward (see step 8 for the
+  path-reference-fixing procedure this requires) rather than leaving a gap
+  or appending out of order.
 - **Subdirectory names**: one per subtopic, `snake_case`, short — drop
   parenthetical abbreviations and slashes, pick the clearer half of an
   "X / Y" label. Examples: "Chain-of-Thought (CoT)" → `chain_of_thought`;
@@ -96,7 +105,7 @@ CONCEPT: <Name> — <one-line definition, close to the user's own wording>.
 
 <2-4 paragraphs: what this mechanic actually is, why it matters, and how
 it contrasts with 1-2 specific other templates elsewhere in the repo by
-relative path, e.g. ../../Core_Architecture/tool_use/basic_agentic_tools.py>
+relative path, e.g. ../../01_Core_Architecture/tool_use/basic_agentic_tools.py>
 
 Use case: <one line>. Type 'exit' to quit/end the conversation.
 """
@@ -109,7 +118,7 @@ import sys
 
 import anthropic
 
-# --- API settings (see ../../Core_Architecture/basics/basic.py for what each of these means) ---
+# --- API settings (see ../../01_Core_Architecture/basics/basic.py for what each of these means) ---
 MODEL = "claude-sonnet-5"
 MAX_TOKENS = 4096          # tune per template's output length needs
 EFFORT = "medium"
@@ -218,7 +227,7 @@ where relevant>
 
 ### Configuration
 
-- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../Core_Architecture/basics/README.md`
+- `MODEL`, `MAX_TOKENS`, `EFFORT`, `SYSTEM_PROMPT` — see `../../01_Core_Architecture/basics/README.md`
 - <any subtopic-specific constants>
 
 ### See also
@@ -268,11 +277,15 @@ force a generic table.>
 ## 7. Update the root README index — and only the index
 
 Add exactly **one** new row to the `## Templates` table in the root
-`README.md`:
+`README.md`, including the `#` learning-order number decided in step 1:
 
 ```
-| [`Topic_Name/`](Topic_Name/README.md) | <one-line combined description covering all subtopics> | `sub1.py`, `sub2.py`, ... |
+| N | [`NN_Topic_Name/`](NN_Topic_Name/README.md) | <one-line combined description covering all subtopics> | `sub1.py`, `sub2.py`, ... |
 ```
+
+If the new topic is appended at the end, this is a one-row addition. If it
+was inserted earlier in the order, every row from that point on shifts down
+by one — update the `#` column for all of them, not just the new row.
 
 The root README must stay a thin index (setup instructions + this one
 table) — never add subtopic-level detail there. If this task is a

@@ -535,23 +535,23 @@
     <div class="schematic">
       <p class="schematic-label">Fig. 1 — the core agentic loop, and where each Core Architecture piece attaches to it</p>
       <div class="pipeline">
-        <a class="node" href="Core_Architecture/system_prompt/"><span class="n-num">ROLE</span>SYSTEM<br />PROMPT</a>
+        <a class="node" href="01_Core_Architecture/system_prompt/"><span class="n-num">ROLE</span>SYSTEM<br />PROMPT</a>
         <div class="arrow" aria-hidden="true"></div>
-        <a class="node" href="Core_Architecture/llm_backbone/"><span class="n-num">ENGINE</span>LLM<br />BACKBONE</a>
+        <a class="node" href="01_Core_Architecture/llm_backbone/"><span class="n-num">ENGINE</span>LLM<br />BACKBONE</a>
         <div class="arrow" aria-hidden="true"></div>
-        <a class="node" href="Core_Architecture/agent/"><span class="n-num">LOOP</span>REASON<br />→ PLAN</a>
+        <a class="node" href="01_Core_Architecture/agent/"><span class="n-num">LOOP</span>REASON<br />→ PLAN</a>
         <div class="arrow" aria-hidden="true"></div>
-        <a class="node" href="Core_Architecture/tool_use/"><span class="n-num">ACT</span>TOOL<br />USE</a>
+        <a class="node" href="01_Core_Architecture/tool_use/"><span class="n-num">ACT</span>TOOL<br />USE</a>
         <div class="arrow" aria-hidden="true"></div>
-        <a class="node" href="Execution_Loops/"><span class="n-num">OBSERVE</span>ENVIRON-<br />MENT</a>
+        <a class="node" href="02_Execution_Loops/"><span class="n-num">OBSERVE</span>ENVIRON-<br />MENT</a>
       </div>
       <div class="feedback-row">
         <span>↩ feeds back into REASON via</span>
-        <b>Memory/</b>
+        <b>05_Memory/</b>
         <span>· bounded every cycle by</span>
-        <b>Execution_Loops/</b>
+        <b>02_Execution_Loops/</b>
         <span>· checked at every step by</span>
-        <b>Safety_and_Control/</b>
+        <b>10_Safety_and_Control/</b>
       </div>
     </div>
 
@@ -574,7 +574,7 @@
 <span class="c3">export <span class="c2">ANTHROPIC_API_KEY</span>=your-key-here</span>
 
 <span class="c1"># 3. run any template — start here</span>
-<span class="c3">python3 Core_Architecture/basics/basic.py</span></pre>
+<span class="c3">python3 01_Core_Architecture/basics/basic.py</span></pre>
   </section>
 
   <section class="modules" id="modules"></section>
@@ -606,7 +606,7 @@
     {
       num: "01", key: "core-architecture", title: "Core Architecture",
       dek: "What an agent is actually made of: a single request/response call, token tracking, the reasoning-engine LLM, tool use, and the system prompt that shapes it all.",
-      dir: "Core_Architecture",
+      dir: "01_Core_Architecture",
       items: [
         ["basics/basic.py", "One request in, one response out — auth, model settings, and the call shape everything else builds on."],
         ["token_tracking/basic_token_tracking.py", "Reading usage off every response to track tokens and cost as they accumulate."],
@@ -619,7 +619,7 @@
     {
       num: "02", key: "planning-and-reasoning", title: "Planning & Reasoning",
       dek: "Getting Claude to reason more reliably: ReAct, chain-of-thought, tree of thought, plan-and-execute, and self-reflection.",
-      dir: "Planning_and_Reasoning",
+      dir: "04_Planning_and_Reasoning",
       items: [
         ["react/react_agent.py", "Alternating reasoning and tool calls out loud, instead of hiding the thinking between them."],
         ["chain_of_thought/chain_of_thought.py", "Prompting step-by-step reasoning before the final answer, instead of jumping to a conclusion."],
@@ -631,7 +631,7 @@
     {
       num: "03", key: "memory", title: "Memory",
       dek: "Six kinds of agent memory: in-context, working, episodic, basic long-term facts, structured semantic, and external/vector store.",
-      dir: "Memory",
+      dir: "05_Memory",
       items: [
         ["in_context_memory/in_context_memory.py", "The memory every chat template already has by default — just the messages list, made explicit."],
         ["working_memory/working_memory.py", "A scratchpad for mid-task state, scoped to one task and cleared once it's done."],
@@ -644,7 +644,7 @@
     {
       num: "04", key: "multi-agent-systems", title: "Multi-Agent Systems",
       dek: "Multiple agents working together: an orchestrator delegating to specialists, a reusable worker agent, permanent handoff, a validating supervisor, and a parallel uncoordinated swarm.",
-      dir: "Multi_Agent_Systems",
+      dir: "07_Multi_Agent_Systems",
       items: [
         ["orchestrator/orchestrator.py", "One agent breaking a goal into subtasks and delegating each to a specialist."],
         ["worker_agent/worker_agent.py", "A specialized agent for one subtask, packaged as a reusable, callable unit."],
@@ -656,7 +656,7 @@
     {
       num: "05", key: "execution-loops", title: "Execution Loops",
       dek: "The core agentic loop and three ways to keep it under control: human approval gates, condition-based breakpoints, and an unconditional iteration cap.",
-      dir: "Execution_Loops",
+      dir: "02_Execution_Loops",
       items: [
         ["agentic_loop/basic_agentic_loop.py", "How a “chat” gets built at all on top of a stateless API."],
         ["human_in_the_loop/human_in_the_loop.py", "A human approves the action before it executes, not after."],
@@ -667,7 +667,7 @@
     {
       num: "06", key: "tools-and-actions", title: "Tools & Actions",
       dek: "Tools that affect the world beyond text, building on the tool-calling foundation in Core Architecture: code execution, web search, file editing, external API/MCP connectors, and browser automation.",
-      dir: "Tools_and_Actions",
+      dir: "03_Tools_and_Actions",
       items: [
         ["code_interpreter/code_interpreter.py", "A real, Anthropic-hosted sandbox Claude runs code in directly — no execute_tool() at all."],
         ["web_search/web_search.py", "Live, native web search past the model's training cutoff, with no search backend to host."],
@@ -679,7 +679,7 @@
     {
       num: "07", key: "task-and-state-management", title: "Task & State Management",
       dek: "Managing the shape and progress of an agent's own work: task decomposition, a formally enforced state machine, context window management, and crash-resumable checkpointing.",
-      dir: "Task_and_State_Management",
+      dir: "06_Task_and_State_Management",
       items: [
         ["task_decomposition/task_decomposition.py", "Breaking a high-level goal into scoped subtasks before any of them run."],
         ["state_machine/state_machine.py", "Formally defined valid states and transitions, so an invalid action can't happen."],
@@ -692,7 +692,7 @@
     {
       num: "08", key: "safety-and-control", title: "Safety & Control",
       dek: "Keeping an agent's actions bounded and reviewable: guardrails, sandboxed execution, role- and task-scoped permissions, and a durable audit trail.",
-      dir: "Safety_and_Control",
+      dir: "10_Safety_and_Control",
       items: [
         ["guardrails/guardrails.py", "Rules or classifiers that block harmful actions automatically, no human required."],
         ["sandboxing/sandboxing.py", "Isolating execution so even an unrestricted command can't reach past its boundary."],
@@ -704,7 +704,7 @@
     {
       num: "09", key: "rag-and-knowledge", title: "RAG & Knowledge",
       dek: "Retrieval-Augmented Generation and its building blocks: embedding, chunking, hybrid dense+sparse search, and coarse-to-fine retrieval.",
-      dir: "RAG_and_Knowledge",
+      dir: "09_RAG_and_Knowledge",
       items: [
         ["embedding/embedding_search.py", "Turning text into vectors so similar meaning can be found by math, not string matching."],
         ["chunking/chunking_strategies.py", "Splitting documents before indexing, so retrieval returns a paragraph, not a whole file."],
@@ -716,7 +716,7 @@
     {
       num: "10", key: "agent-frameworks-and-patterns", title: "Agent Frameworks & Patterns",
       dek: "Compositional patterns for structuring how an agent turns a request into a result: a tool registry, fixed prompt chaining, a classify-then-route agent, and a reusable output evaluator.",
-      dir: "Agent_Frameworks_and_Patterns",
+      dir: "08_Agent_Frameworks_and_Patterns",
       items: [
         ["tool_registry/basic_tool_registry.py", "One catalog per tool instead of a hand-maintained list plus an if/elif chain."],
         ["prompt_chaining/basic_prompt_chaining.py", "A fixed sequence of focused LLM calls, each one's output feeding the next."],
